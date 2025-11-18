@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { supportedLanguages } from '../../utils/i18n';
+import en from '../../locales/en.json';
+import zhCN from '../../locales/zh-CN.json';
+import zhTW from '../../locales/zh-TW.json';
+import fr from '../../locales/fr.json';
+import es from '../../locales/es.json';
+
+export function getStaticPaths() {
+  return supportedLanguages.map((lang) => ({
+    params: { lang },
+  }));
+}
+
+const { lang } = Astro.params;
+const locales: Record<string, any> = {
+  'en': en,
+  'zh-CN': zhCN,
+  'zh-TW': zhTW,
+  'fr': fr,
+  'es': es,
+};
+const t = locales[lang || 'en'] || en;
+---
+
+<BaseLayout title={`${t.conclusion.title} - ${t.site.title}`}>
+  <main class="min-h-screen py-12 px-4">
+    <div class="container-custom">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-bold mb-4">{t.conclusion.title}</h1>
+      </div>
+
+      <div class="max-w-3xl mx-auto">
+        <div class="card">
+          <div class="prose max-w-none">
+            <p class="text-lg text-gray-700 leading-relaxed">
+              {t.conclusion.content}
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-8 text-center">
+          <a href={`/${lang}/action`} class="btn-primary text-lg px-8 py-4">
+            Continue
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+

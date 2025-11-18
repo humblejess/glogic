@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { supportedLanguages } from '../../utils/i18n';
+import en from '../../locales/en.json';
+import zhCN from '../../locales/zh-CN.json';
+import zhTW from '../../locales/zh-TW.json';
+import fr from '../../locales/fr.json';
+import es from '../../locales/es.json';
+
+export function getStaticPaths() {
+  return supportedLanguages.map((lang) => ({
+    params: { lang },
+  }));
+}
+
+const { lang } = Astro.params;
+const locales: Record<string, any> = {
+  'en': en,
+  'zh-CN': zhCN,
+  'zh-TW': zhTW,
+  'fr': fr,
+  'es': es,
+};
+const t = locales[lang || 'en'] || en;
+---
+
+<BaseLayout title={t.site.title} description={t.site.description}>
+  <main class="min-h-screen flex items-center justify-center py-12 px-4">
+    <div class="container-custom text-center">
+      <h1 class="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary-600 to-accent-500 bg-clip-text text-transparent">
+        {t.intro.title}
+      </h1>
+      <p class="text-xl md:text-2xl text-gray-600 mb-8 font-medium">
+        {t.intro.subtitle}
+      </p>
+      <div class="max-w-3xl mx-auto mb-12">
+        <p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-6">
+          {t.intro.content}
+        </p>
+      </div>
+      <a href={`/${lang}/ranking`} class="btn-primary inline-block text-lg px-8 py-4">
+        {t.intro.cta}
+      </a>
+    </div>
+  </main>
+</BaseLayout>
+

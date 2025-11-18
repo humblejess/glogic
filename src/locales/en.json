@@ -1,0 +1,67 @@
+{
+  "site": {
+    "title": "Gender Logic",
+    "description": "A website to help people think logically about gender identification"
+  },
+  "nav": {
+    "home": "Home",
+    "start": "Start Thinking"
+  },
+  "intro": {
+    "title": "Gender Logic",
+    "subtitle": "Thinking Logically About Gender Identification",
+    "content": "Despite political or religious opinions, we want to calmly discuss gender from a scientific, logical, and lawful perspective. Some people think gender is as clear as length or time, which should be physically or medically clear. Sure, let's discuss it. Some people think it's clear like 0 or 1. I would say it's more like day and night. Yes, it's crystal clear. No one will be confused about whether it's day or night. But what about dawn and dusk? Can you tell me which second is day and which second is night now?",
+    "cta": "Start Thinking"
+  },
+  "ranking": {
+    "title": "How Do You Identify Gender?",
+    "subtitle": "Please rank the following criteria by importance",
+    "instructions": "Drag to reorder (desktop) or tap to select priority (mobile)",
+    "options": {
+      "a": {
+        "title": "DNA and Chromosomes",
+        "description": "Using DNA and chromosomes as gender definition standards"
+      },
+      "b": {
+        "title": "Congenital Reproductive Organs",
+        "description": "Using innate reproductive organs (penis, testicles, vagina, ovaries, uterus) as gender definition standards"
+      },
+      "c": {
+        "title": "Current Reproductive Organs",
+        "description": "Using current (including surgically reconstructed) reproductive organs as gender definition standards"
+      },
+      "d": {
+        "title": "Secondary Sexual Characteristics",
+        "description": "Using secondary sexual characteristics (Adam's apple, beard, breasts, physique, appearance, voice, menstruation, etc.) as gender definition standards"
+      },
+      "e": {
+        "title": "Gender Expression",
+        "description": "Using gender expression (dress, behavior, and temperament) as gender definition standards"
+      },
+      "f": {
+        "title": "Self-Identified Gender",
+        "description": "Using self-identified gender from a psychological perspective as gender definition standards"
+      }
+    },
+    "confirm": "Confirm",
+    "reset": "Reset"
+  },
+  "scenario": {
+    "title": "Real-World Scenarios",
+    "subtitle": "Let's see how your choices work in reality",
+    "continue": "Continue",
+    "next": "Next Scenario"
+  },
+  "conclusion": {
+    "title": "Conclusion",
+    "content": "No matter what political view or religious opinion, transgender people are human beings. You cannot say they don't belong to human. If you agree they are human, then we have to face their gender identity. Even if people may think the DNA/chromosome (a) or the sex assigned at birth (b) should be the most decisive factor to identify gender, but in reality, they can only decide one's gender by secondary sexual characteristics (d) or gender expression (e). Furthermore, even if one chooses option C, they have no way to check it in reality. They still judge people's gender by option d and e unless one's secondary sexual characteristics are masculine. But that can't be a rule, right?"
+  },
+  "callToAction": {
+    "title": "The Reality",
+    "subtitle": "Challenges Faced by Transgender People",
+    "content": "In the real world, many transgender people are facing big challenges from many places, like struggling with their assigned sex, acceptance from family members and friends, challenges from work and school, being beaten or committing suicide, etc. These are the majority of transgender people. The discrimination they experience far outweighs the benefits they gain from this status. Indeed, the situation of minors and sports is worthy of further discussion, but we need to think logically and reflect on the cognition of gender first. I am here to wish these trans people and anyone with gender dysphoria, peace and happiness.",
+    "discord": "Join the Discussion on Discord",
+    "discordDescription": "Welcome to communicate on our Discord server"
+  }
+}
+

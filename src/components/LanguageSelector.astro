@@ -1,0 +1,24 @@
+---
+import { supportedLanguages, languageNames } from '../utils/i18n';
+
+// Get current language from URL path
+const pathParts = Astro.url.pathname.split('/').filter(Boolean);
+const currentLang = pathParts[0] && supportedLanguages.includes(pathParts[0] as any) 
+  ? pathParts[0] 
+  : 'en';
+const currentPath = pathParts.length > 1 ? '/' + pathParts.slice(1).join('/') : '/';
+---
+
+<div class="language-selector">
+  <select 
+    class="px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500"
+    onchange={`window.location.href = '/' + this.value + '${currentPath}'`}
+  >
+    {supportedLanguages.map((lang) => (
+      <option value={lang} selected={lang === currentLang}>
+        {languageNames[lang]}
+      </option>
+    ))}
+  </select>
+</div>
+

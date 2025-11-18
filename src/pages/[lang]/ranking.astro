@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import RankingComponent from '../../components/RankingComponent.vue';
+import { supportedLanguages } from '../../utils/i18n';
+import en from '../../locales/en.json';
+import zhCN from '../../locales/zh-CN.json';
+import zhTW from '../../locales/zh-TW.json';
+import fr from '../../locales/fr.json';
+import es from '../../locales/es.json';
+
+export function getStaticPaths() {
+  return supportedLanguages.map((lang) => ({
+    params: { lang },
+  }));
+}
+
+const { lang } = Astro.params;
+const locales: Record<string, any> = {
+  'en': en,
+  'zh-CN': zhCN,
+  'zh-TW': zhTW,
+  'fr': fr,
+  'es': es,
+};
+const t = locales[lang || 'en'] || en;
+
+const options = [
+  { id: 'a', key: 'a', title: t.ranking.options.a.title, description: t.ranking.options.a.description },
+  { id: 'b', key: 'b', title: t.ranking.options.b.title, description: t.ranking.options.b.description },
+  { id: 'c', key: 'c', title: t.ranking.options.c.title, description: t.ranking.options.c.description },
+  { id: 'd', key: 'd', title: t.ranking.options.d.title, description: t.ranking.options.d.description },
+  { id: 'e', key: 'e', title: t.ranking.options.e.title, description: t.ranking.options.e.description },
+  { id: 'f', key: 'f', title: t.ranking.options.f.title, description: t.ranking.options.f.description },
+];
+---
+
+<BaseLayout title={`${t.ranking.title} - ${t.site.title}`}>
+  <main class="min-h-screen py-12 px-4">
+    <div class="container-custom">
+      <RankingComponent 
+        client:load
+        options={JSON.stringify(options)}
+        translations={JSON.stringify(t)}
+        currentLang={lang || 'en'}
+      />
+    </div>
+  </main>
+</BaseLayout>
+

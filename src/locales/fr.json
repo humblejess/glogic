@@ -1,0 +1,67 @@
+{
+  "site": {
+    "title": "Logique de Genre",
+    "description": "Un site web pour aider les gens à penser logiquement à l'identification du genre"
+  },
+  "nav": {
+    "home": "Accueil",
+    "start": "Commencer à réfléchir"
+  },
+  "intro": {
+    "title": "Logique de Genre",
+    "subtitle": "Penser logiquement à l'identification du genre",
+    "content": "Malgré les opinions politiques ou religieuses, nous voulons discuter calmement du genre d'un point de vue scientifique, logique et juridique. Certaines personnes pensent que le genre est aussi clair que la longueur ou le temps, ce qui devrait être physiquement ou médicalement clair. Bien sûr, discutons-en. Certaines personnes pensent que c'est clair comme 0 ou 1. Je dirais que c'est plus comme le jour et la nuit. Oui, c'est très clair. Personne ne sera confus quant à savoir si c'est le jour ou la nuit. Mais qu'en est-il de l'aube et du crépuscule ? Pouvez-vous me dire quelle seconde est le jour et quelle seconde est la nuit maintenant ?",
+    "cta": "Commencer à réfléchir"
+  },
+  "ranking": {
+    "title": "Comment identifiez-vous le genre ?",
+    "subtitle": "Veuillez classer les critères suivants par importance",
+    "instructions": "Glissez pour réorganiser (bureau) ou appuyez pour sélectionner la priorité (mobile)",
+    "options": {
+      "a": {
+        "title": "ADN et Chromosomes",
+        "description": "Utiliser l'ADN et les chromosomes comme normes de définition du genre"
+      },
+      "b": {
+        "title": "Organes Reproducteurs Congénitaux",
+        "description": "Utiliser les organes reproducteurs innés (pénis, testicules, vagin, ovaires, utérus) comme normes de définition du genre"
+      },
+      "c": {
+        "title": "Organes Reproducteurs Actuels",
+        "description": "Utiliser les organes reproducteurs actuels (y compris reconstruits chirurgicalement) comme normes de définition du genre"
+      },
+      "d": {
+        "title": "Caractéristiques Sexuelles Secondaires",
+        "description": "Utiliser les caractéristiques sexuelles secondaires (pomme d'Adam, barbe, seins, physique, apparence, voix, menstruation, etc.) comme normes de définition du genre"
+      },
+      "e": {
+        "title": "Expression de Genre",
+        "description": "Utiliser l'expression de genre (vêtements, comportement et tempérament) comme normes de définition du genre"
+      },
+      "f": {
+        "title": "Genre Auto-Identifié",
+        "description": "Utiliser le genre auto-identifié d'un point de vue psychologique comme normes de définition du genre"
+      }
+    },
+    "confirm": "Confirmer",
+    "reset": "Réinitialiser"
+  },
+  "scenario": {
+    "title": "Scénarios Réels",
+    "subtitle": "Voyons comment vos choix fonctionnent dans la réalité",
+    "continue": "Continuer",
+    "next": "Scénario suivant"
+  },
+  "conclusion": {
+    "title": "Conclusion",
+    "content": "Peu importe le point de vue politique ou l'opinion religieuse, les personnes transgenres sont des êtres humains. Vous ne pouvez pas dire qu'ils n'appartiennent pas à l'humanité. Si vous êtes d'accord qu'ils sont humains, alors nous devons faire face à leur identité de genre. Même si les gens peuvent penser que l'ADN/les chromosomes (a) ou le sexe assigné à la naissance (b) devraient être le facteur le plus décisif pour identifier le genre, mais en réalité, ils ne peuvent décider du genre d'une personne que par les caractéristiques sexuelles secondaires (d) ou l'expression de genre (e). De plus, même si on choisit l'option C, on n'a aucun moyen de le vérifier dans la réalité. On juge toujours le genre des gens par les options d et e, sauf si les caractéristiques sexuelles secondaires d'une personne sont masculines. Mais cela ne peut pas être une règle, n'est-ce pas ?"
+  },
+  "callToAction": {
+    "title": "La Réalité",
+    "subtitle": "Défis auxquels sont confrontées les personnes transgenres",
+    "content": "Dans le monde réel, de nombreuses personnes transgenres font face à de grands défis de nombreux endroits, comme lutter avec leur sexe assigné, l'acceptation des membres de la famille et des amis, les défis du travail et de l'école, être battues ou se suicider, etc. Ce sont la majorité des personnes transgenres. La discrimination qu'elles subissent dépasse de loin les avantages qu'elles tirent de ce statut. En effet, la situation des mineurs et du sport mérite une discussion plus approfondie, mais nous devons d'abord penser logiquement et réfléchir à la cognition du genre. Je souhaite ici à ces personnes trans et à toute personne souffrant de dysphorie de genre, paix et bonheur.",
+    "discord": "Rejoignez la discussion sur Discord",
+    "discordDescription": "Bienvenue pour communiquer sur notre serveur Discord"
+  }
+}
+

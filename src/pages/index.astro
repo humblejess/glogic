@@ -1,0 +1,28 @@
+---
+import { supportedLanguages } from '../utils/i18n';
+
+// Redirect to default language (English)
+export function getStaticPaths() {
+  return [
+    {
+      params: {},
+    },
+  ];
+}
+
+// Client-side redirect to /en
+const defaultLang = 'en';
+---
+
+<html>
+  <head>
+    <meta http-equiv="refresh" content={`0;url=/${defaultLang}`} />
+    <script>
+      window.location.href = `/${defaultLang}`;
+    </script>
+  </head>
+  <body>
+    <p>Redirecting to <a href={`/${defaultLang}`}>/{defaultLang}</a>...</p>
+  </body>
+</html>
+
