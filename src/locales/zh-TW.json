@@ -44,7 +44,8 @@
       }
     },
     "confirm": "確認",
-    "reset": "重置"
+    "reset": "重置",
+    "completeAll": "請先為所有選項分配優先級。"
   },
   "scenario": {
     "title": "現實場景",

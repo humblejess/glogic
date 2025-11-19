@@ -1,0 +1,59 @@
+---
+interface Props {
+  type?: 'circle' | 'square' | 'triangle' | 'blob';
+  size?: 'sm' | 'md' | 'lg';
+  color?: string;
+  position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'center';
+  opacity?: number;
+}
+
+const { 
+  type = 'blob', 
+  size = 'md', 
+  color = 'primary',
+  position = 'center',
+  opacity = 0.1
+} = Astro.props;
+
+const sizeClasses = {
+  sm: 'w-32 h-32',
+  md: 'w-64 h-64',
+  lg: 'w-96 h-96'
+};
+
+const positionClasses = {
+  'top-left': 'top-0 left-0',
+  'top-right': 'top-0 right-0',
+  'bottom-left': 'bottom-0 left-0',
+  'bottom-right': 'bottom-0 right-0',
+  'center': 'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
+};
+
+const colorClasses = {
+  primary: 'bg-primary-500',
+  accent: 'bg-accent-500',
+  purple: 'bg-purple-500',
+  blue: 'bg-blue-500',
+  pink: 'bg-pink-500'
+};
+
+const shapeClasses = {
+  circle: 'rounded-full',
+  square: 'rounded-3xl rotate-45',
+  triangle: 'clip-triangle',
+  blob: 'rounded-[40%]'
+};
+---
+
+<div 
+  class={`absolute ${sizeClasses[size]} ${positionClasses[position]} ${colorClasses[color as keyof typeof colorClasses]} ${shapeClasses[type]} blur-3xl pointer-events-none`}
+  style={`opacity: ${opacity};`}
+  aria-hidden="true"
+></div>
+
+<style>
+  .clip-triangle {
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  }
+</style>
+

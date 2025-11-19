@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import AbstractShape from '../../components/AbstractShape.astro';
 import { supportedLanguages } from '../../utils/i18n';
 import en from '../../locales/en.json';
 import zhCN from '../../locales/zh-CN.json';
@@ -25,23 +26,41 @@ const t = locales[lang || 'en'] || en;
 ---
 
 <BaseLayout title={`${t.conclusion.title} - ${t.site.title}`}>
-  <main class="min-h-screen py-12 px-4">
-    <div class="container-custom">
+  <main class="min-h-screen py-12 px-4 relative overflow-hidden">
+    <!-- Decorative background shapes -->
+    <AbstractShape type="blob" size="lg" color="primary" position="top-left" opacity={0.1} />
+    <AbstractShape type="square" size="md" color="accent" position="bottom-right" opacity={0.08} />
+    
+    <div class="container-custom relative z-10">
       <div class="text-center mb-12">
-        <h1 class="text-4xl font-bold mb-4">{t.conclusion.title}</h1>
+        <div class="inline-block mb-6">
+          <div class="w-20 h-20 rounded-full bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center shadow-lg mx-auto">
+            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary-600 to-accent-500 bg-clip-text text-transparent">
+          {t.conclusion.title}
+        </h1>
       </div>
 
       <div class="max-w-3xl mx-auto">
-        <div class="card">
-          <div class="prose max-w-none">
-            <p class="text-lg text-gray-700 leading-relaxed">
-              {t.conclusion.content}
-            </p>
+        <div class="card relative overflow-hidden border-2 border-primary-100">
+          <div class="absolute top-0 left-0 w-24 h-24 bg-gradient-to-br from-primary-500/10 to-accent-500/10 rounded-br-full"></div>
+          <div class="relative z-10">
+            <div class="prose max-w-none">
+              <div class="bg-gray-50 rounded-xl p-6 border-l-4 border-primary-500">
+                <p class="text-lg md:text-xl text-gray-700 leading-relaxed">
+                  {t.conclusion.content}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="mt-8 text-center">
-          <a href={`/${lang}/action`} class="btn-primary text-lg px-8 py-4">
+        <div class="mt-10 text-center">
+          <a href={`/${lang}/action`} class="btn-primary text-lg px-8 py-4 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200">
             Continue
           </a>
         </div>

@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ScenarioDisplay from '../../components/ScenarioDisplay.vue';
+import AbstractShape from '../../components/AbstractShape.astro';
 import { supportedLanguages } from '../../utils/i18n';
 import en from '../../locales/en.json';
 import zhCN from '../../locales/zh-CN.json';
@@ -22,75 +24,35 @@ const locales: Record<string, any> = {
   'es': es,
 };
 const t = locales[lang || 'en'] || en;
-
-// Scenario content - will be dynamically generated based on user's ranking
-const scenarios = [
-  {
-    id: 'restroom-transman',
-    title: lang === 'en' ? 'Public Restroom: Trans-man Scenario' : 
-           lang === 'zh-CN' ? '公共卫生间：跨性别男性场景' :
-           lang === 'zh-TW' ? '公共衛生間：跨性別男性場景' :
-           lang === 'fr' ? 'Toilettes publiques : Scénario trans-homme' :
-           'Baño público: Escenario trans-hombre',
-    content: lang === 'en' 
-      ? `Imagine you're leaving a public restroom and see a transgender man (trans-man):
-- He has a full beard
-- Deep voice
-- Completely masculine appearance
-- But he hasn't had bottom surgery (pre bottom SRS)
-
-According to your ranking choice, if you put option A (DNA/chromosomes) or option B (congenital reproductive organs) as the highest priority, then logically, this trans-man should go to the women's restroom (because his DNA and congenital organs are female).
-
-But in reality:
-- You wouldn't feel comfortable having a bearded, deep-voiced trans-man go to the women's restroom
-- You actually have no way to know a person's DNA or sex assigned at birth
-- You can only judge based on visible characteristics (secondary sexual characteristics - option D) or gender expression (option E)
-
-What does this tell us?
-This scenario reveals a contradiction: your rational choice says DNA/congenital organs are most important, but your actual behavior relies on appearance and expression to judge. And you have no way to check a person's DNA or congenital organs in reality.`
-      : lang === 'zh-CN'
-      ? `想象一下，你走出公共卫生间，看到一个跨性别男性（trans-man）：
-- 他留着大胡子
-- 声音低沉
-- 外貌完全符合传统男性特征
-- 但他还没有做下体手术（pre bottom SRS）
-
-根据你刚才的排序选择，如果你把选项A（DNA/染色体）或选项B（先天的生殖器官）放在最高优先级，那么按照逻辑，这个trans-man应该去女卫生间（因为他的DNA和先天器官是女性的）。
-
-但在现实中：
-- 你不会感到舒服让一个大胡子、声音低沉的trans-man去女卫生间
-- 你实际上根本无法知道一个人的DNA或出生时的性别
-- 你只能根据可见的特征（第二性征 - 选项D）或性别表达（选项E）来判断
-
-这说明了什么？
-这个场景揭示了一个矛盾：你的理性选择说DNA/先天器官最重要，但你的实际行为却依赖外貌和表达来判断。而且，你在现实中根本没有办法检查一个人的DNA或先天器官。`
-      : 'Scenario content...'
-  }
-];
 ---
 
 <BaseLayout title={`${t.scenario.title} - ${t.site.title}`}>
-  <main class="min-h-screen py-12 px-4">
-    <div class="container-custom">
-      <div class="text-center mb-8">
-        <h1 class="text-4xl font-bold mb-4">{t.scenario.title}</h1>
+  <main class="min-h-screen py-12 px-4 relative overflow-hidden">
+    <!-- Decorative background shapes -->
+    <AbstractShape type="blob" size="md" color="primary" position="top-right" opacity={0.1} />
+    <AbstractShape type="circle" size="sm" color="accent" position="bottom-left" opacity={0.08} />
+    
+    <div class="container-custom relative z-10">
+      <div class="text-center mb-12">
+        <div class="inline-block mb-6">
+          <div class="w-20 h-20 rounded-full bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center shadow-lg mx-auto">
+            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+          </div>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary-600 to-accent-500 bg-clip-text text-transparent">
+          {t.scenario.title}
+        </h1>
         <p class="text-xl text-gray-600">{t.scenario.subtitle}</p>
       </div>
 
       <div class="space-y-8">
-        <div class="card">
-          <h2 class="text-2xl font-bold mb-4">{scenarios[0].title}</h2>
-          <div class="prose max-w-none">
-            <p class="text-gray-700 leading-relaxed whitespace-pre-line">
-              {scenarios[0].content}
-            </p>
-          </div>
-          <div class="mt-6">
-            <a href={`/${lang}/conclusion`} class="btn-primary">
-              {t.scenario.continue}
-            </a>
-          </div>
-        </div>
+        <ScenarioDisplay 
+          client:load
+          translations={JSON.stringify(t)}
+          currentLang={lang || 'en'}
+        />
       </div>
     </div>
   </main>

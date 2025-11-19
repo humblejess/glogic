@@ -44,7 +44,8 @@
       }
     },
     "confirm": "Confirm",
-    "reset": "Reset"
+    "reset": "Reset",
+    "completeAll": "Please assign priority to all options first."
   },
   "scenario": {
     "title": "Real-World Scenarios",

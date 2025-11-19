@@ -1,17 +1,19 @@
 <template>
   <div class="ranking-container">
-    <div class="mb-8">
-      <h2 class="text-3xl font-bold mb-4">{{ t?.ranking?.title || '' }}</h2>
+    <div class="mb-8 text-center">
+      <h2 class="text-4xl font-bold mb-4 bg-gradient-to-r from-primary-600 to-accent-500 bg-clip-text text-transparent">
+        {{ t?.ranking?.title || '' }}
+      </h2>
       <p class="text-lg text-gray-600 mb-2">{{ t?.ranking?.subtitle || '' }}</p>
       <p class="text-sm text-gray-500">{{ t?.ranking?.instructions || '' }}</p>
     </div>
 
     <!-- Desktop: Draggable List -->
-    <div v-if="items.length > 0 && !isMobile" class="space-y-3">
+    <div v-if="items.length > 0 && !isMobile" class="space-y-4">
       <div
         v-for="(item, index) in items"
         :key="item.id"
-        class="card flex items-center gap-4 cursor-move hover:shadow-md transition-shadow"
+        class="card flex items-center gap-4 cursor-move hover:shadow-lg transition-all duration-200 hover:scale-[1.02] border-2 border-transparent hover:border-primary-200"
         draggable="true"
         @dragstart="handleDragStart($event, index)"
         @dragover.prevent="handleDragOver($event, index)"
@@ -23,12 +25,15 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
           </svg>
         </div>
-        <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center font-bold">
+        <div class="flex-shrink-0 w-14 h-14 rounded-full bg-gradient-to-br from-primary-500 to-accent-500 text-white flex items-center justify-center font-bold text-lg shadow-md">
           {{ index + 1 }}
         </div>
+        <div class="flex-shrink-0">
+          <OptionIcon :icon-type="getIconType(item.key)" size="md" />
+        </div>
         <div class="flex-1">
-          <h3 class="font-semibold text-lg mb-1">{{ item?.title || 'No title' }}</h3>
-          <p class="text-gray-600 text-sm">{{ item?.description || 'No description' }}</p>
+          <h3 class="font-semibold text-lg mb-1 text-gray-900">{{ item?.title || 'No title' }}</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">{{ item?.description || 'No description' }}</p>
         </div>
       </div>
     </div>
@@ -38,17 +43,20 @@
       <div
         v-for="(item, index) in items"
         :key="item?.id || index"
-        class="card"
+        class="card active:scale-95 transition-transform"
         @click="selectPriority(item)"
       >
-        <div class="flex items-center justify-between">
+        <div class="flex items-center gap-4">
+          <div class="flex-shrink-0">
+            <OptionIcon :icon-type="getIconType(item.key)" size="sm" />
+          </div>
           <div class="flex-1">
-            <h3 class="font-semibold text-lg mb-1">{{ item?.title || '' }}</h3>
-            <p class="text-gray-600 text-sm">{{ item?.description || '' }}</p>
+            <h3 class="font-semibold text-lg mb-1 text-gray-900">{{ item?.title || '' }}</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">{{ item?.description || '' }}</p>
           </div>
           <div
             v-if="item?.priority"
-            class="flex-shrink-0 w-10 h-10 rounded-full bg-primary-600 text-white flex items-center justify-center font-bold ml-4"
+            class="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-primary-500 to-accent-500 text-white flex items-center justify-center font-bold text-lg shadow-md"
           >
             {{ item.priority }}
           </div>
@@ -104,6 +112,7 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, watch } from 'vue';
+import OptionIcon from './OptionIcon.vue';
 
 interface RankingOption {
   id: string;
@@ -249,14 +258,38 @@ function closeModal() {
 }
 
 function confirmRanking() {
-  const ranking = items.value.map(item => item.key);
-  // Store ranking and navigate to scenario page
-  if (typeof window !== 'undefined') {
-    sessionStorage.setItem('ranking', JSON.stringify(ranking));
-    const lang = props.currentLang || 'en';
-    window.location.href = `/${lang}/scenario`;
+  // For mobile, check if all items have priority
+  if (isMobile.value) {
+    const allHavePriority = items.value.every(item => item.priority !== undefined);
+    if (!allHavePriority) {
+      alert(t.value?.ranking?.completeAll || 'Please assign priority to all options first.');
+      return;
+    }
+    // Sort by priority before saving
+    const sorted = [...items.value].sort((a, b) => {
+      const aPriority = a.priority ?? 999;
+      const bPriority = b.priority ?? 999;
+      return aPriority - bPriority;
+    });
+    const ranking = sorted.map(item => item.key);
+    // Store ranking and navigate to scenario page
+    if (typeof window !== 'undefined') {
+      sessionStorage.setItem('ranking', JSON.stringify(ranking));
+      const lang = props.currentLang || 'en';
+      window.location.href = `/${lang}/scenario`;
+    }
+    emit('confirm', ranking);
+  } else {
+    // Desktop: use current order
+    const ranking = items.value.map(item => item.key);
+    // Store ranking and navigate to scenario page
+    if (typeof window !== 'undefined') {
+      sessionStorage.setItem('ranking', JSON.stringify(ranking));
+      const lang = props.currentLang || 'en';
+      window.location.href = `/${lang}/scenario`;
+    }
+    emit('confirm', ranking);
   }
-  emit('confirm', ranking);
 }
 
 function resetRanking() {
@@ -314,6 +347,18 @@ function handleDragEnd(event: DragEvent) {
     target.style.borderTop = '';
   }
   draggedIndex.value = null;
+}
+
+function getIconType(key: string): 'dna' | 'organ' | 'current-organ' | 'characteristics' | 'expression' | 'identity' {
+  const iconMap: Record<string, 'dna' | 'organ' | 'current-organ' | 'characteristics' | 'expression' | 'identity'> = {
+    'a': 'dna',
+    'b': 'organ',
+    'c': 'current-organ',
+    'd': 'characteristics',
+    'e': 'expression',
+    'f': 'identity'
+  };
+  return iconMap[key] || 'dna';
 }
 </script>
 

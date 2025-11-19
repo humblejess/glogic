@@ -44,7 +44,8 @@
       }
     },
     "confirm": "Confirmar",
-    "reset": "Reiniciar"
+    "reset": "Reiniciar",
+    "completeAll": "Por favor, asigne prioridad a todas las opciones primero."
   },
   "scenario": {
     "title": "Escenarios Reales",
