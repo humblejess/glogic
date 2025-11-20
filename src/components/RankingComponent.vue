@@ -10,6 +10,35 @@
 
     <!-- Desktop: Fixed slots with draggable content -->
     <div v-if="items.length > 0 && !isMobile" class="space-y-2">
+      <!-- Available options (not yet placed) -->
+      <div v-if="unplacedItems.length > 0" class="mb-6 pb-4 border-b border-gray-200">
+        <h3 class="text-sm font-semibold mb-3 text-gray-700">{{ t?.ranking?.availableOptions || 'Available Options:' }}</h3>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
+          <div
+            v-for="item in unplacedItems"
+            :key="item.id"
+            class="flex items-center gap-2 cursor-move hover:bg-gray-50 transition-colors rounded-lg px-3 py-2 border border-gray-200 bg-white"
+            draggable="true"
+            @dragstart="handleContentDragStart($event, null, item)"
+            @dragend="handleContentDragEnd"
+          >
+            <div class="drag-handle flex-shrink-0 text-gray-400 hover:text-gray-600 cursor-grab active:cursor-grabbing">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+              </svg>
+            </div>
+            <div class="flex-shrink-0">
+              <OptionIcon :icon-type="getIconType(item.key)" size="sm" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="font-semibold text-sm mb-0.5 text-gray-900 truncate">{{ item.key }}. {{ item.title }}</h3>
+              <p class="text-gray-600 text-xs leading-snug line-clamp-1">{{ item.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Ranking slots 1-6 -->
       <div
         v-for="(slot, slotIndex) in 6"
         :key="slotIndex"
@@ -54,34 +83,6 @@
           class="flex-1 flex items-center justify-center text-gray-400 text-sm italic border-2 border-dashed border-gray-300 rounded-lg px-3 py-2 h-12"
         >
           {{ t?.ranking?.dropHere || 'Drop option here' }}
-        </div>
-      </div>
-      
-      <!-- Available options (not yet placed) -->
-      <div v-if="unplacedItems.length > 0" class="mt-4 pt-4 border-t border-gray-200">
-        <h3 class="text-sm font-semibold mb-3 text-gray-700">{{ t?.ranking?.availableOptions || 'Available Options:' }}</h3>
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
-          <div
-            v-for="item in unplacedItems"
-            :key="item.id"
-            class="flex items-center gap-2 cursor-move hover:bg-gray-50 transition-colors rounded-lg px-3 py-2 border border-gray-200 bg-white"
-            draggable="true"
-            @dragstart="handleContentDragStart($event, null, item)"
-            @dragend="handleContentDragEnd"
-          >
-            <div class="drag-handle flex-shrink-0 text-gray-400 hover:text-gray-600 cursor-grab active:cursor-grabbing">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
-              </svg>
-            </div>
-            <div class="flex-shrink-0">
-              <OptionIcon :icon-type="getIconType(item.key)" size="sm" />
-            </div>
-            <div class="flex-1 min-w-0">
-              <h3 class="font-semibold text-sm mb-0.5 text-gray-900 truncate">{{ item.key }}. {{ item.title }}</h3>
-              <p class="text-gray-600 text-xs leading-snug line-clamp-1">{{ item.description }}</p>
-            </div>
-          </div>
         </div>
       </div>
     </div>
