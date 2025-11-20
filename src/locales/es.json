@@ -48,7 +48,8 @@
     "confirm": "Confirmar",
     "reset": "Reiniciar",
     "completeAll": "Por favor, asigne prioridad a todas las opciones primero.",
-    "clearPriority": "Borrar prioridad"
+    "clearPriority": "Borrar prioridad",
+    "yourRanking": "Tu clasificación:"
   },
   "scenario": {
     "title": "Escenarios Reales",

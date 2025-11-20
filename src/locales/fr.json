@@ -48,7 +48,8 @@
     "confirm": "Confirmer",
     "reset": "Réinitialiser",
     "completeAll": "Veuillez d'abord attribuer une priorité à toutes les options.",
-    "clearPriority": "Effacer la priorité"
+    "clearPriority": "Effacer la priorité",
+    "yourRanking": "Votre classement :"
   },
   "scenario": {
     "title": "Scénarios Réels",

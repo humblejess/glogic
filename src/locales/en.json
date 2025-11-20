@@ -48,7 +48,8 @@
     "confirm": "Confirm",
     "reset": "Reset",
     "completeAll": "Please assign priority to all options first.",
-    "clearPriority": "Clear Priority"
+    "clearPriority": "Clear Priority",
+    "yourRanking": "Your Ranking:"
   },
   "scenario": {
     "title": "Real-World Scenarios",

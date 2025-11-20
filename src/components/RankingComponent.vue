@@ -181,30 +181,28 @@
 
       <!-- Result Display: 1-6 Ranking -->
       <div>
-        <h3 class="text-sm font-semibold mb-3 text-gray-700 px-2">Your Ranking:</h3>
+        <h3 class="text-sm font-semibold mb-3 text-gray-700 px-2">{{ t?.ranking?.yourRanking || 'Your Ranking:' }}</h3>
         <div class="space-y-2">
           <div
             v-for="slotIndex in 6"
             :key="slotIndex"
-            class="flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-lg"
+            class="flex items-start gap-3 p-3 bg-white border border-gray-200 rounded-lg"
             :class="{
-              'border-primary-300 bg-primary-50': getItemInSlot(slotIndex - 1)
+              'border-primary-300 bg-primary-50': getItemInSlot(slotIndex - 1),
+              'border-gray-200': !getItemInSlot(slotIndex - 1)
             }"
           >
             <div class="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-primary-500 to-accent-500 text-white flex items-center justify-center font-bold text-sm shadow-sm">
               {{ slotIndex }}
             </div>
-            <div v-if="getItemInSlot(slotIndex - 1)" class="flex items-center gap-3 flex-1">
+            <div v-if="getItemInSlot(slotIndex - 1)" class="flex items-start gap-3 flex-1">
               <div class="flex-shrink-0">
                 <OptionIcon :icon-type="getIconType(getItemInSlot(slotIndex - 1)!.key)" size="sm" />
               </div>
               <div class="flex-1 min-w-0">
-                <div class="font-semibold text-sm text-gray-900">{{ getItemInSlot(slotIndex - 1)?.key }}. {{ getItemInSlot(slotIndex - 1)?.title }}</div>
-                <div class="text-xs text-gray-600 line-clamp-1">{{ getItemInSlot(slotIndex - 1)?.description }}</div>
+                <div class="font-semibold text-sm text-gray-900 mb-1">{{ getItemInSlot(slotIndex - 1)?.key }}. {{ getItemInSlot(slotIndex - 1)?.title }}</div>
+                <div class="text-xs text-gray-600 leading-relaxed">{{ getItemInSlot(slotIndex - 1)?.description }}</div>
               </div>
-            </div>
-            <div v-else class="flex-1 text-sm text-gray-400 italic">
-              {{ t?.ranking?.dropHere || 'Empty' }}
             </div>
           </div>
         </div>
