@@ -47,7 +47,8 @@
     },
     "confirm": "Confirmer",
     "reset": "Réinitialiser",
-    "completeAll": "Veuillez d'abord attribuer une priorité à toutes les options."
+    "completeAll": "Veuillez d'abord attribuer une priorité à toutes les options.",
+    "clearPriority": "Effacer la priorité"
   },
   "scenario": {
     "title": "Scénarios Réels",

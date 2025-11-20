@@ -117,26 +117,38 @@
         class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
         @click.self="closeModal"
       >
-        <div class="bg-white rounded-xl p-6 max-w-sm w-full">
-          <h3 class="text-xl font-bold mb-4">{{ t?.ranking?.instructions || 'Select Priority' }}</h3>
-          <div class="grid grid-cols-3 gap-3">
+        <div class="bg-white rounded-xl p-6 max-w-sm w-full shadow-2xl">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-bold">{{ t?.ranking?.instructions || 'Select Priority' }}</h3>
+            <button
+              @click="closeModal"
+              class="text-gray-400 hover:text-gray-600 transition-colors"
+            >
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          <p class="text-sm text-gray-600 mb-4">{{ selectedItem.key }}. {{ selectedItem.title }}</p>
+          <div class="grid grid-cols-3 gap-3 mb-4">
             <button
               v-for="num in 6"
               :key="num"
-              class="w-12 h-12 rounded-lg border-2 font-bold transition-colors"
+              class="w-14 h-14 rounded-lg border-2 font-bold text-lg transition-all active:scale-95"
               :class="selectedItem.priority === num 
-                ? 'bg-primary-600 text-white border-primary-600' 
-                : 'bg-gray-100 text-gray-700 border-gray-300 hover:bg-gray-200'"
-              @click="setPriority(num)"
+                ? 'bg-primary-600 text-white border-primary-600 shadow-lg scale-105' 
+                : 'bg-gray-100 text-gray-700 border-gray-300 active:bg-gray-200'"
+              @click="setPriorityAndClose(num)"
             >
               {{ num }}
             </button>
           </div>
           <button
-            class="mt-4 w-full btn-primary"
-            @click="closeModal"
+            v-if="selectedItem.priority"
+            class="w-full btn-secondary text-sm py-2"
+            @click="clearPriority"
           >
-            {{ t?.ranking?.confirm || 'Confirm' }}
+            {{ t?.ranking?.clearPriority || 'Clear Priority' }}
           </button>
         </div>
       </div>
@@ -373,6 +385,43 @@ function setPriority(priority: number) {
       const bPriority = b.priority ?? 999;
       return aPriority - bPriority;
     });
+  }
+}
+
+function setPriorityAndClose(priority: number) {
+  if (selectedItem.value) {
+    // If clicking the same priority, clear it
+    if (selectedItem.value.priority === priority) {
+      selectedItem.value.priority = undefined;
+    } else {
+      // Remove priority from other items
+      items.value.forEach(item => {
+        if (item.priority === priority && item.id !== selectedItem.value!.id) {
+          item.priority = undefined;
+        }
+      });
+      selectedItem.value.priority = priority;
+    }
+    
+    items.value.sort((a, b) => {
+      const aPriority = a.priority ?? 999;
+      const bPriority = b.priority ?? 999;
+      return aPriority - bPriority;
+    });
+    
+    // Close modal after a short delay for better UX
+    setTimeout(() => {
+      selectedItem.value = null;
+    }, 150);
+  }
+}
+
+function clearPriority() {
+  if (selectedItem.value) {
+    selectedItem.value.priority = undefined;
+    setTimeout(() => {
+      selectedItem.value = null;
+    }, 150);
   }
 }
 
