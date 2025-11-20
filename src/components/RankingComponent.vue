@@ -86,70 +86,95 @@
       </div>
     </div>
 
-    <!-- Mobile: Click to Select Priority -->
-    <div v-else-if="items.length > 0 && isMobile" class="space-y-4">
-      <div
-        v-for="(item, index) in items"
-        :key="item?.id || index"
-        class="card active:scale-95 transition-transform"
-        @click="selectPriority(item)"
-      >
-        <div class="flex items-center gap-4">
-          <div class="flex-shrink-0">
-            <OptionIcon :icon-type="getIconType(item.key)" size="sm" />
-          </div>
-          <div class="flex-1">
-            <h3 class="font-semibold text-lg mb-1 text-gray-900">{{ item?.key }}. {{ item?.title || '' }}</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">{{ item?.description || '' }}</p>
-          </div>
+    <!-- Mobile: Drag to Select Priority -->
+    <div v-else-if="items.length > 0 && isMobile" class="space-y-6">
+      <!-- Available Options (a-f) -->
+      <div>
+        <h3 class="text-sm font-semibold mb-3 text-gray-700 px-2">{{ t?.ranking?.availableOptions || 'Available Options:' }}</h3>
+        <div class="grid grid-cols-3 gap-2">
           <div
-            v-if="item?.priority"
-            class="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-primary-500 to-accent-500 text-white flex items-center justify-center font-bold text-lg shadow-md"
+            v-for="item in unplacedItems"
+            :key="item.id"
+            class="flex flex-col items-center justify-center p-3 bg-white border-2 border-gray-300 rounded-lg cursor-move active:scale-95 transition-transform touch-none"
+            :class="{
+              'border-primary-500 bg-primary-50': draggedItem?.item.id === item.id,
+              'opacity-50': draggedItem && draggedItem.item.id !== item.id
+            }"
+            @touchstart="handleMobileDragStart($event, null, item)"
+            @touchmove.prevent="handleMobileDragMove"
+            @touchend="handleMobileDragEnd"
           >
-            {{ item.priority }}
+            <div class="mb-2">
+              <OptionIcon :icon-type="getIconType(item.key)" size="sm" />
+            </div>
+            <div class="text-xs font-bold text-gray-900">{{ item.key }}</div>
+            <div class="text-xs text-gray-600 text-center mt-1 line-clamp-1">{{ item.title }}</div>
           </div>
         </div>
       </div>
-      
-      <!-- Priority Selector Modal (Mobile) -->
-      <div
-        v-if="selectedItem"
-        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
-        @click.self="closeModal"
-      >
-        <div class="bg-white rounded-xl p-6 max-w-sm w-full shadow-2xl">
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl font-bold">{{ t?.ranking?.instructions || 'Select Priority' }}</h3>
-            <button
-              @click="closeModal"
-              class="text-gray-400 hover:text-gray-600 transition-colors"
+
+      <!-- Drag Target Area: 1-6 Slots -->
+      <div>
+        <h3 class="text-sm font-semibold mb-3 text-gray-700 px-2">{{ t?.ranking?.instructions || 'Drag to rank' }}</h3>
+        <div class="grid grid-cols-3 gap-2">
+            <div
+              v-for="slotIndex in 6"
+              :key="slotIndex"
+              :data-slot-index="slotIndex - 1"
+              class="flex flex-col items-center justify-center p-4 bg-gray-50 border-2 border-dashed rounded-lg min-h-[100px] transition-colors"
+              :class="{
+                'border-primary-500 bg-primary-100': dragOverSlot === slotIndex - 1,
+                'border-gray-300': dragOverSlot !== slotIndex - 1 && !getItemInSlot(slotIndex - 1),
+                'border-primary-400 bg-primary-50': getItemInSlot(slotIndex - 1)
+              }"
+              @touchmove.prevent="handleMobileDragMove"
+              @touchend="handleMobileDragEnd($event, slotIndex - 1)"
             >
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary-500 to-accent-500 text-white flex items-center justify-center font-bold text-lg shadow-sm mb-2">
+              {{ slotIndex }}
+            </div>
+            <div v-if="getItemInSlot(slotIndex - 1)" class="flex flex-col items-center">
+              <div class="mb-1">
+                <OptionIcon :icon-type="getIconType(getItemInSlot(slotIndex - 1)!.key)" size="sm" />
+              </div>
+              <div class="text-xs font-bold text-gray-900">{{ getItemInSlot(slotIndex - 1)?.key }}</div>
+              <div class="text-xs text-gray-600 text-center mt-1 line-clamp-1">{{ getItemInSlot(slotIndex - 1)?.title }}</div>
+            </div>
+            <div v-else class="text-xs text-gray-400 text-center">
+              {{ t?.ranking?.dropHere || 'Drop here' }}
+            </div>
           </div>
-          <p class="text-sm text-gray-600 mb-4">{{ selectedItem.key }}. {{ selectedItem.title }}</p>
-          <div class="grid grid-cols-3 gap-3 mb-4">
-            <button
-              v-for="num in 6"
-              :key="num"
-              class="w-14 h-14 rounded-lg border-2 font-bold text-lg transition-all active:scale-95"
-              :class="selectedItem.priority === num 
-                ? 'bg-primary-600 text-white border-primary-600 shadow-lg scale-105' 
-                : 'bg-gray-100 text-gray-700 border-gray-300 active:bg-gray-200'"
-              @click="setPriorityAndClose(num)"
-            >
-              {{ num }}
-            </button>
-          </div>
-          <button
-            v-if="selectedItem.priority"
-            class="w-full btn-secondary text-sm py-2"
-            @click="clearPriority"
+        </div>
+      </div>
+
+      <!-- Result Display: 1-6 Ranking -->
+      <div>
+        <h3 class="text-sm font-semibold mb-3 text-gray-700 px-2">Your Ranking:</h3>
+        <div class="space-y-2">
+          <div
+            v-for="slotIndex in 6"
+            :key="slotIndex"
+            class="flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-lg"
+            :class="{
+              'border-primary-300 bg-primary-50': getItemInSlot(slotIndex - 1)
+            }"
           >
-            {{ t?.ranking?.clearPriority || 'Clear Priority' }}
-          </button>
+            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-primary-500 to-accent-500 text-white flex items-center justify-center font-bold text-sm shadow-sm">
+              {{ slotIndex }}
+            </div>
+            <div v-if="getItemInSlot(slotIndex - 1)" class="flex items-center gap-3 flex-1">
+              <div class="flex-shrink-0">
+                <OptionIcon :icon-type="getIconType(getItemInSlot(slotIndex - 1)!.key)" size="sm" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-semibold text-sm text-gray-900">{{ getItemInSlot(slotIndex - 1)?.key }}. {{ getItemInSlot(slotIndex - 1)?.title }}</div>
+                <div class="text-xs text-gray-600 line-clamp-1">{{ getItemInSlot(slotIndex - 1)?.description }}</div>
+              </div>
+            </div>
+            <div v-else class="flex-1 text-sm text-gray-400 italic">
+              {{ t?.ranking?.dropHere || 'Empty' }}
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -265,6 +290,13 @@ const slots = ref<(RankingOption | null)[]>(Array(6).fill(null));
 const isMobile = ref(false);
 const dragOverSlot = ref<number | null>(null);
 const draggedItem = ref<{ item: RankingOption; fromSlot: number | null } | null>(null);
+const mobileDragState = ref<{
+  item: RankingOption | null;
+  fromSlot: number | null;
+  touchStartX: number;
+  touchStartY: number;
+  element: HTMLElement | null;
+} | null>(null);
 
 // Watch for parsed options changes and initialize items
 watch(parsedOptions, (newOptions) => {
@@ -365,113 +397,129 @@ function handleSlotDrop(event: DragEvent, slotIndex: number) {
   draggedItem.value = null;
 }
 
-// Mobile handlers
-function selectPriority(item: RankingOption) {
-  selectedItem.value = item;
+// Mobile drag handlers
+function handleMobileDragStart(event: TouchEvent, slotIndex: number | null, item?: RankingOption) {
+  const targetItem = item || (slotIndex !== null ? slots.value[slotIndex] : null);
+  if (!targetItem) return;
+
+  const touch = event.touches[0];
+  mobileDragState.value = {
+    item: targetItem,
+    fromSlot: slotIndex,
+    touchStartX: touch.clientX,
+    touchStartY: touch.clientY,
+    element: event.target as HTMLElement
+  };
+
+  draggedItem.value = { item: targetItem, fromSlot: slotIndex };
+  
+  // Visual feedback
+  if (event.target) {
+    (event.target as HTMLElement).style.opacity = '0.5';
+  }
 }
 
-function setPriority(priority: number) {
-  if (selectedItem.value) {
-    items.value.forEach(item => {
-      if (item.priority === priority && item.id !== selectedItem.value!.id) {
-        item.priority = undefined;
+function handleMobileDragMove(event: TouchEvent) {
+  if (!mobileDragState.value) return;
+  
+  const touch = event.touches[0];
+  const element = document.elementFromPoint(touch.clientX, touch.clientY);
+  
+  // Find the target slot
+  if (element) {
+    const slotElement = element.closest('[data-slot-index]');
+    if (slotElement) {
+      const slotIndex = parseInt((slotElement as HTMLElement).dataset.slotIndex || '-1');
+      if (slotIndex >= 0 && slotIndex < 6) {
+        dragOverSlot.value = slotIndex;
       }
-    });
-    selectedItem.value.priority = priority;
-    selectedItem.value = null;
-    
-    items.value.sort((a, b) => {
-      const aPriority = a.priority ?? 999;
-      const bPriority = b.priority ?? 999;
-      return aPriority - bPriority;
-    });
-  }
-}
-
-function setPriorityAndClose(priority: number) {
-  if (selectedItem.value) {
-    // If clicking the same priority, clear it
-    if (selectedItem.value.priority === priority) {
-      selectedItem.value.priority = undefined;
-    } else {
-      // Remove priority from other items
-      items.value.forEach(item => {
-        if (item.priority === priority && item.id !== selectedItem.value!.id) {
-          item.priority = undefined;
-        }
-      });
-      selectedItem.value.priority = priority;
     }
-    
-    items.value.sort((a, b) => {
-      const aPriority = a.priority ?? 999;
-      const bPriority = b.priority ?? 999;
-      return aPriority - bPriority;
-    });
-    
-    // Close modal after a short delay for better UX
-    setTimeout(() => {
-      selectedItem.value = null;
-    }, 150);
   }
 }
 
-function clearPriority() {
-  if (selectedItem.value) {
-    selectedItem.value.priority = undefined;
-    setTimeout(() => {
-      selectedItem.value = null;
-    }, 150);
+function handleMobileDragEnd(event: TouchEvent, targetSlotIndex?: number) {
+  if (!mobileDragState.value || !draggedItem.value) {
+    // Reset visual feedback
+    if (mobileDragState.value?.element) {
+      mobileDragState.value.element.style.opacity = '1';
+    }
+    mobileDragState.value = null;
+    draggedItem.value = null;
+    dragOverSlot.value = null;
+    return;
   }
-}
 
-function closeModal() {
-  selectedItem.value = null;
+  const { item, fromSlot } = draggedItem.value;
+  
+  // Determine target slot
+  let finalSlotIndex: number | null = null;
+  
+  if (targetSlotIndex !== undefined) {
+    finalSlotIndex = targetSlotIndex;
+  } else if (dragOverSlot.value !== null) {
+    finalSlotIndex = dragOverSlot.value;
+  } else {
+    // Try to find from touch position
+    const touch = event.changedTouches[0];
+    const element = document.elementFromPoint(touch.clientX, touch.clientY);
+    if (element) {
+      const slotElement = element.closest('[data-slot-index]');
+      if (slotElement) {
+        const slotIndex = parseInt((slotElement as HTMLElement).dataset.slotIndex || '-1');
+        if (slotIndex >= 0 && slotIndex < 6) {
+          finalSlotIndex = slotIndex;
+        }
+      }
+    }
+  }
+
+  if (finalSlotIndex !== null) {
+    // Remove from old slot
+    if (fromSlot !== null) {
+      slots.value[fromSlot] = null;
+    }
+
+    // If target slot is occupied, swap items
+    if (slots.value[finalSlotIndex]) {
+      if (fromSlot !== null) {
+        slots.value[fromSlot] = slots.value[finalSlotIndex];
+      }
+    }
+
+    // Place in new slot
+    slots.value[finalSlotIndex] = item;
+  }
+
+  // Reset visual feedback
+  if (mobileDragState.value.element) {
+    mobileDragState.value.element.style.opacity = '1';
+  }
+  
+  mobileDragState.value = null;
+  draggedItem.value = null;
+  dragOverSlot.value = null;
 }
 
 function confirmRanking() {
-  if (isMobile.value) {
-    const allHavePriority = items.value.every(item => item.priority !== undefined);
-    if (!allHavePriority) {
-      alert(t.value?.ranking?.completeAll || 'Please assign priority to all options first.');
-      return;
-    }
-    const sorted = [...items.value].sort((a, b) => {
-      const aPriority = a.priority ?? 999;
-      const bPriority = b.priority ?? 999;
-      return aPriority - bPriority;
-    });
-    const ranking = sorted.map(item => item.key);
-    if (typeof window !== 'undefined') {
-      sessionStorage.setItem('ranking', JSON.stringify(ranking));
-      // Scroll to scenario section instead of navigating
-      const scenarioSection = document.getElementById('scenario');
-      if (scenarioSection) {
-        scenarioSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-    emit('confirm', ranking);
-  } else {
-    // Desktop: get ranking from slots
-    const ranking = slots.value
-      .filter(Boolean)
-      .map(item => item!.key);
-    
-    if (ranking.length !== 6) {
-      alert(t.value?.ranking?.completeAll || 'Please place all options in the slots.');
-      return;
-    }
-    
-    if (typeof window !== 'undefined') {
-      sessionStorage.setItem('ranking', JSON.stringify(ranking));
-      // Scroll to scenario section instead of navigating
-      const scenarioSection = document.getElementById('scenario');
-      if (scenarioSection) {
-        scenarioSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-    emit('confirm', ranking);
+  // Both mobile and desktop use slots now
+  const ranking = slots.value
+    .filter(Boolean)
+    .map(item => item!.key);
+  
+  if (ranking.length !== 6) {
+    alert(t.value?.ranking?.completeAll || 'Please place all options in the slots.');
+    return;
   }
+  
+  if (typeof window !== 'undefined') {
+    sessionStorage.setItem('ranking', JSON.stringify(ranking));
+    // Scroll to scenario section instead of navigating
+    const scenarioSection = document.getElementById('scenario');
+    if (scenarioSection) {
+      scenarioSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+  emit('confirm', ranking);
 }
 
 function resetRanking() {
