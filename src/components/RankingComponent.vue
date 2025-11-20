@@ -87,7 +87,27 @@
     </div>
 
     <!-- Mobile: Drag to Select Priority -->
-    <div v-else-if="items.length > 0 && isMobile" class="space-y-6">
+    <div v-else-if="items.length > 0 && isMobile" class="space-y-6 relative">
+      <!-- Dragging Preview (follows finger) -->
+      <div
+        v-if="mobileDragState && mobileDragState.item"
+        :style="{
+          position: 'fixed',
+          left: mobileDragState.currentX + 'px',
+          top: mobileDragState.currentY + 'px',
+          transform: 'translate(-50%, -50%)',
+          zIndex: 9999,
+          pointerEvents: 'none'
+        }"
+        class="flex flex-col items-center justify-center p-3 bg-white border-2 border-primary-500 rounded-lg shadow-2xl"
+      >
+        <div class="mb-2">
+          <OptionIcon :icon-type="getIconType(mobileDragState.item.key)" size="sm" />
+        </div>
+        <div class="text-xs font-bold text-gray-900">{{ mobileDragState.item.key }}</div>
+        <div class="text-xs text-gray-600 text-center mt-1 line-clamp-1">{{ mobileDragState.item.title }}</div>
+      </div>
+
       <!-- Available Options (a-f) -->
       <div>
         <h3 class="text-sm font-semibold mb-3 text-gray-700 px-2">{{ t?.ranking?.availableOptions || 'Available Options:' }}</h3>
@@ -95,9 +115,10 @@
           <div
             v-for="item in unplacedItems"
             :key="item.id"
-            class="flex flex-col items-center justify-center p-3 bg-white border-2 border-gray-300 rounded-lg cursor-move active:scale-95 transition-transform touch-none"
+            class="flex flex-col items-center justify-center p-3 bg-white border-2 border-gray-300 rounded-lg cursor-move transition-transform touch-none"
             :class="{
               'border-primary-500 bg-primary-50': draggedItem?.item.id === item.id,
+              'opacity-30': draggedItem && draggedItem.item.id === item.id,
               'opacity-50': draggedItem && draggedItem.item.id !== item.id
             }"
             @touchstart="handleMobileDragStart($event, null, item)"
@@ -125,7 +146,7 @@
               :class="{
                 'border-primary-500 bg-primary-100': dragOverSlot === slotIndex - 1,
                 'border-gray-300': dragOverSlot !== slotIndex - 1 && !getItemInSlot(slotIndex - 1),
-                'border-primary-400 bg-primary-50': getItemInSlot(slotIndex - 1)
+                'border-primary-400 bg-primary-50': getItemInSlot(slotIndex - 1) && dragOverSlot !== slotIndex - 1
               }"
               @touchmove.prevent="handleMobileDragMove"
               @touchend="handleMobileDragEnd($event, slotIndex - 1)"
@@ -133,7 +154,16 @@
             <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary-500 to-accent-500 text-white flex items-center justify-center font-bold text-lg shadow-sm mb-2">
               {{ slotIndex }}
             </div>
-            <div v-if="getItemInSlot(slotIndex - 1)" class="flex flex-col items-center">
+            <div 
+              v-if="getItemInSlot(slotIndex - 1)" 
+              class="flex flex-col items-center w-full touch-none"
+              :class="{
+                'opacity-30': draggedItem?.item.id === getItemInSlot(slotIndex - 1)?.id
+              }"
+              @touchstart="handleMobileDragStart($event, slotIndex - 1, getItemInSlot(slotIndex - 1)!)"
+              @touchmove.prevent="handleMobileDragMove"
+              @touchend="handleMobileDragEnd"
+            >
               <div class="mb-1">
                 <OptionIcon :icon-type="getIconType(getItemInSlot(slotIndex - 1)!.key)" size="sm" />
               </div>
@@ -295,6 +325,8 @@ const mobileDragState = ref<{
   fromSlot: number | null;
   touchStartX: number;
   touchStartY: number;
+  currentX: number;
+  currentY: number;
   element: HTMLElement | null;
 } | null>(null);
 
@@ -408,14 +440,16 @@ function handleMobileDragStart(event: TouchEvent, slotIndex: number | null, item
     fromSlot: slotIndex,
     touchStartX: touch.clientX,
     touchStartY: touch.clientY,
+    currentX: touch.clientX,
+    currentY: touch.clientY,
     element: event.target as HTMLElement
   };
 
   draggedItem.value = { item: targetItem, fromSlot: slotIndex };
   
-  // Visual feedback
+  // Visual feedback - make original element semi-transparent
   if (event.target) {
-    (event.target as HTMLElement).style.opacity = '0.5';
+    (event.target as HTMLElement).style.opacity = '0.3';
   }
 }
 
@@ -423,16 +457,24 @@ function handleMobileDragMove(event: TouchEvent) {
   if (!mobileDragState.value) return;
   
   const touch = event.touches[0];
-  const element = document.elementFromPoint(touch.clientX, touch.clientY);
+  
+  // Update preview position to follow finger
+  mobileDragState.value.currentX = touch.clientX;
+  mobileDragState.value.currentY = touch.clientY;
   
   // Find the target slot
+  const element = document.elementFromPoint(touch.clientX, touch.clientY);
   if (element) {
     const slotElement = element.closest('[data-slot-index]');
     if (slotElement) {
       const slotIndex = parseInt((slotElement as HTMLElement).dataset.slotIndex || '-1');
       if (slotIndex >= 0 && slotIndex < 6) {
         dragOverSlot.value = slotIndex;
+      } else {
+        dragOverSlot.value = null;
       }
+    } else {
+      dragOverSlot.value = null;
     }
   }
 }
@@ -473,16 +515,22 @@ function handleMobileDragEnd(event: TouchEvent, targetSlotIndex?: number) {
     }
   }
 
-  if (finalSlotIndex !== null) {
+  if (finalSlotIndex !== null && finalSlotIndex !== fromSlot) {
+    // Store the item currently in target slot (if any)
+    const targetSlotItem = slots.value[finalSlotIndex];
+    
     // Remove from old slot
     if (fromSlot !== null) {
       slots.value[fromSlot] = null;
     }
 
     // If target slot is occupied, swap items
-    if (slots.value[finalSlotIndex]) {
+    if (targetSlotItem) {
       if (fromSlot !== null) {
-        slots.value[fromSlot] = slots.value[finalSlotIndex];
+        slots.value[fromSlot] = targetSlotItem;
+      } else {
+        // If dragging from unplaced items, the swapped item goes back to unplaced
+        // (it will automatically appear in available options)
       }
     }
 
