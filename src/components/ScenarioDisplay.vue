@@ -42,7 +42,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { getScenarioForRanking, scenarioLibrary, type Scenario } from '../utils/scenarios';
 
 interface Props {
@@ -68,7 +68,7 @@ const t = computed(() => parsedTranslations.value);
 const ranking = ref<string[]>([]);
 const scenario = ref<{ title: string; content: string } | null>(null);
 
-onMounted(() => {
+function loadRanking() {
   // Read ranking from sessionStorage
   if (typeof window !== 'undefined') {
     const rankingStr = sessionStorage.getItem('ranking');
@@ -83,11 +83,31 @@ onMounted(() => {
             title: scenarioData.title[props.currentLang] || scenarioData.title['en'],
             content: scenarioData.content[props.currentLang] || scenarioData.content['en'],
           };
+        } else {
+          scenario.value = null;
         }
       } catch (e) {
         console.error('Failed to parse ranking:', e);
+        scenario.value = null;
       }
+    } else {
+      scenario.value = null;
     }
+  }
+}
+
+onMounted(() => {
+  loadRanking();
+  
+  // Listen for custom event from RankingComponent
+  if (typeof window !== 'undefined') {
+    window.addEventListener('rankingUpdated', loadRanking);
+  }
+});
+
+onUnmounted(() => {
+  if (typeof window !== 'undefined') {
+    window.removeEventListener('rankingUpdated', loadRanking);
   }
 });
 

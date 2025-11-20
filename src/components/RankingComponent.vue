@@ -97,7 +97,9 @@
           top: mobileDragState.currentY + 'px',
           transform: 'translate(-50%, -50%)',
           zIndex: 9999,
-          pointerEvents: 'none'
+          pointerEvents: 'none',
+          width: 'calc(33.333% - 0.5rem)',
+          maxWidth: '120px'
         }"
         class="flex flex-col items-center justify-center p-3 bg-white border-2 border-primary-500 rounded-lg shadow-2xl"
       >
@@ -105,7 +107,7 @@
           <OptionIcon :icon-type="getIconType(mobileDragState.item.key)" size="sm" />
         </div>
         <div class="text-xs font-bold text-gray-900">{{ mobileDragState.item.key }}</div>
-        <div class="text-xs text-gray-600 text-center mt-1 line-clamp-1">{{ mobileDragState.item.title }}</div>
+        <div class="text-xs text-gray-600 text-center mt-1 line-clamp-1 w-full">{{ mobileDragState.item.title }}</div>
       </div>
 
       <!-- Available Options (a-f) -->
@@ -561,6 +563,10 @@ function confirmRanking() {
   
   if (typeof window !== 'undefined') {
     sessionStorage.setItem('ranking', JSON.stringify(ranking));
+    
+    // Trigger custom event to notify ScenarioDisplay to reload
+    window.dispatchEvent(new CustomEvent('rankingUpdated'));
+    
     // Scroll to scenario section instead of navigating
     const scenarioSection = document.getElementById('scenario');
     if (scenarioSection) {
