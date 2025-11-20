@@ -40,7 +40,7 @@ const options = [
 <BaseLayout title={t.site.title} description={t.site.description}>
   <main class="scroll-smooth">
     <!-- Section 1: Introduction -->
-    <section class="min-h-screen flex items-center justify-center py-12 px-4 relative overflow-hidden">
+    <section class="flex items-center justify-center py-12 pb-8 px-4 relative overflow-hidden">
       <!-- Decorative background shapes -->
       <AbstractShape type="blob" size="lg" color="primary" position="top-left" opacity={0.1} />
       <AbstractShape type="circle" size="md" color="accent" position="top-right" opacity={0.08} />
@@ -73,7 +73,7 @@ const options = [
     </section>
 
     <!-- Section 2: Ranking -->
-    <section id="ranking" class="min-h-screen py-12 px-4 relative overflow-hidden">
+    <section id="ranking" class="py-12 px-4 relative overflow-hidden">
       <AbstractShape type="blob" size="md" color="primary" position="top-right" opacity={0.08} />
       <AbstractShape type="circle" size="sm" color="accent" position="bottom-left" opacity={0.06} />
       
@@ -88,7 +88,7 @@ const options = [
     </section>
 
     <!-- Section 3: Scenario -->
-    <section id="scenario" class="min-h-screen py-12 px-4 relative overflow-hidden">
+    <section id="scenario" class="py-12 px-4 relative overflow-hidden">
       <AbstractShape type="blob" size="md" color="primary" position="top-right" opacity={0.08} />
       <AbstractShape type="circle" size="sm" color="accent" position="bottom-left" opacity={0.06} />
       
@@ -118,7 +118,7 @@ const options = [
     </section>
 
     <!-- Section 4: Gender Therapy Reflection -->
-    <section id="genderTherapy" class="min-h-screen py-12 px-4 relative overflow-hidden">
+    <section id="genderTherapy" class="py-12 px-4 relative overflow-hidden">
       <AbstractShape type="blob" size="md" color="primary" position="top-right" opacity={0.08} />
       <AbstractShape type="circle" size="sm" color="accent" position="bottom-left" opacity={0.06} />
       
@@ -257,11 +257,20 @@ const options = [
             </div>
           </div>
         </div>
+
+        {/* Reflection text below table */}
+        <div class="max-w-3xl mx-auto mt-8">
+          <div class="card bg-primary-50 border-2 border-primary-200">
+            <p class="text-lg md:text-xl text-gray-800 leading-relaxed font-medium">
+              {t.genderTherapy.reflection}
+            </p>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- Section 5: Conclusion -->
-    <section id="conclusion" class="min-h-screen py-12 px-4 relative overflow-hidden">
+    <section id="conclusion" class="py-12 px-4 relative overflow-hidden">
       <AbstractShape type="blob" size="lg" color="primary" position="top-left" opacity={0.08} />
       <AbstractShape type="square" size="md" color="accent" position="bottom-right" opacity={0.06} />
       
@@ -298,7 +307,7 @@ const options = [
     </section>
 
     <!-- Section 6: Call to Action -->
-    <section id="action" class="min-h-screen py-12 px-4 relative overflow-hidden">
+    <section id="action" class="py-12 px-4 relative overflow-hidden">
       <AbstractShape type="blob" size="md" color="primary" position="top-right" opacity={0.08} />
       <AbstractShape type="circle" size="lg" color="accent" position="bottom-left" opacity={0.06} />
       
