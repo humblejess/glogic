@@ -22,19 +22,6 @@
           </div>
         </div>
         
-        <div class="mt-8 flex justify-center">
-          <div class="animate-bounce">
-            <svg 
-              @click="scrollToConclusion"
-              class="w-8 h-8 text-gray-400 mx-auto cursor-pointer hover:text-primary-600 transition-colors" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
-          </div>
-        </div>
       </div>
     </div>
     <div v-else class="card text-center py-12 border-2 border-dashed border-gray-300">
