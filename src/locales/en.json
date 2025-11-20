@@ -15,7 +15,7 @@
   },
   "ranking": {
     "title": "How Do You Identify Gender?",
-    "subtitle": "Please rank the following criteria by importance",
+    "subtitle": "Please rank the following criteria by importance, especially when they are NOT consistent.",
     "instructions": "Drag to reorder (desktop) or tap to select priority (mobile)",
     "dropHere": "Drop option here",
     "availableOptions": "Available Options:",

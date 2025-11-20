@@ -15,7 +15,7 @@
   },
   "ranking": {
     "title": "你如何识别性别？",
-    "subtitle": "请按重要性对以下标准进行排序",
+    "subtitle": "请按重要性对以下标准进行排序，特别是当它们不一致时。",
     "instructions": "拖拽排序（桌面）或点击选择优先级（移动端）",
     "dropHere": "拖放选项到这里",
     "availableOptions": "可用选项：",

@@ -15,7 +15,7 @@
   },
   "ranking": {
     "title": "你如何識別性別？",
-    "subtitle": "請按重要性對以下標準進行排序",
+    "subtitle": "請按重要性對以下標準進行排序，特別是當它們不一致時。",
     "instructions": "拖拽排序（桌面）或點擊選擇優先級（移動端）",
     "dropHere": "拖放選項到這裡",
     "availableOptions": "可用選項：",

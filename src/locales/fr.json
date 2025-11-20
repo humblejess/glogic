@@ -15,7 +15,7 @@
   },
   "ranking": {
     "title": "Comment identifiez-vous le genre ?",
-    "subtitle": "Veuillez classer les critères suivants par importance",
+    "subtitle": "Veuillez classer les critères suivants par importance, surtout lorsqu'ils ne sont pas cohérents.",
     "instructions": "Glissez pour réorganiser (bureau) ou appuyez pour sélectionner la priorité (mobile)",
     "dropHere": "Déposez l'option ici",
     "availableOptions": "Options disponibles :",
