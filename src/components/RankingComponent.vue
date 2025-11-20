@@ -43,7 +43,7 @@
             <OptionIcon :icon-type="getIconType(getItemInSlot(slotIndex)!.key)" size="sm" />
           </div>
           <div class="flex-1 min-w-0">
-            <h3 class="font-semibold text-base mb-0.5 text-gray-900 truncate">{{ getItemInSlot(slotIndex)?.title || 'No title' }}</h3>
+            <h3 class="font-semibold text-base mb-0.5 text-gray-900 truncate">{{ getItemInSlot(slotIndex)?.key }}. {{ getItemInSlot(slotIndex)?.title || 'No title' }}</h3>
             <p class="text-gray-600 text-xs leading-snug line-clamp-1">{{ getItemInSlot(slotIndex)?.description || 'No description' }}</p>
           </div>
         </div>
@@ -78,7 +78,7 @@
               <OptionIcon :icon-type="getIconType(item.key)" size="sm" />
             </div>
             <div class="flex-1 min-w-0">
-              <h3 class="font-semibold text-sm mb-0.5 text-gray-900 truncate">{{ item.title }}</h3>
+              <h3 class="font-semibold text-sm mb-0.5 text-gray-900 truncate">{{ item.key }}. {{ item.title }}</h3>
               <p class="text-gray-600 text-xs leading-snug line-clamp-1">{{ item.description }}</p>
             </div>
           </div>
@@ -99,7 +99,7 @@
             <OptionIcon :icon-type="getIconType(item.key)" size="sm" />
           </div>
           <div class="flex-1">
-            <h3 class="font-semibold text-lg mb-1 text-gray-900">{{ item?.title || '' }}</h3>
+            <h3 class="font-semibold text-lg mb-1 text-gray-900">{{ item?.key }}. {{ item?.title || '' }}</h3>
             <p class="text-gray-600 text-sm leading-relaxed">{{ item?.description || '' }}</p>
           </div>
           <div
