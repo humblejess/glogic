@@ -22,10 +22,18 @@
           </div>
         </div>
         
-        <div class="mt-8 flex justify-end">
-          <a :href="`/${currentLang}/conclusion`" class="btn-primary shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200">
-            {{ t?.scenario?.continue || 'Continue' }}
-          </a>
+        <div class="mt-8 flex justify-center">
+          <div class="animate-bounce">
+            <svg 
+              @click="scrollToConclusion"
+              class="w-8 h-8 text-gray-400 mx-auto cursor-pointer hover:text-primary-600 transition-colors" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+          </div>
         </div>
       </div>
     </div>
@@ -36,9 +44,12 @@
         </svg>
       </div>
       <p class="text-gray-500 mb-4 text-lg">No ranking data found. Please complete the ranking first.</p>
-      <a :href="`/${currentLang}/ranking`" class="btn-primary inline-block">
+      <button 
+        @click="scrollToRanking"
+        class="btn-primary inline-block"
+      >
         Go to Ranking
-      </a>
+      </button>
     </div>
   </div>
 </template>
@@ -92,5 +103,23 @@ onMounted(() => {
     }
   }
 });
+
+function scrollToConclusion() {
+  if (typeof window !== 'undefined') {
+    const conclusionSection = document.getElementById('conclusion');
+    if (conclusionSection) {
+      conclusionSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+}
+
+function scrollToRanking() {
+  if (typeof window !== 'undefined') {
+    const rankingSection = document.getElementById('ranking');
+    if (rankingSection) {
+      rankingSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+}
 </script>
 

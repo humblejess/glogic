@@ -4,11 +4,20 @@
 
 @layer base {
   body {
-    @apply font-sans;
+    font-family: 'Nunito', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    @apply text-gray-800;
+    letter-spacing: -0.01em;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold;
+    font-family: 'Nunito', sans-serif;
+    @apply font-bold;
+    letter-spacing: -0.02em;
+  }
+  
+  p {
+    line-height: 1.7;
+    letter-spacing: -0.005em;
   }
 }
 

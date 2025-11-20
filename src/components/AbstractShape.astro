@@ -16,9 +16,9 @@ const {
 } = Astro.props;
 
 const sizeClasses = {
-  sm: 'w-32 h-32',
-  md: 'w-64 h-64',
-  lg: 'w-96 h-96'
+  sm: 'w-24 h-24',
+  md: 'w-48 h-48',
+  lg: 'w-72 h-72'
 };
 
 const positionClasses = {
@@ -46,7 +46,7 @@ const shapeClasses = {
 ---
 
 <div 
-  class={`absolute ${sizeClasses[size]} ${positionClasses[position]} ${colorClasses[color as keyof typeof colorClasses]} ${shapeClasses[type]} blur-3xl pointer-events-none`}
+  class={`absolute ${sizeClasses[size]} ${positionClasses[position]} ${colorClasses[color as keyof typeof colorClasses]} ${shapeClasses[type]} blur-2xl pointer-events-none`}
   style={`opacity: ${opacity};`}
   aria-hidden="true"
 ></div>
