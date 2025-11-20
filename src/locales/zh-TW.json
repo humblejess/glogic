@@ -17,6 +17,8 @@
     "title": "你如何識別性別？",
     "subtitle": "請按重要性對以下標準進行排序",
     "instructions": "拖拽排序（桌面）或點擊選擇優先級（移動端）",
+    "dropHere": "拖放選項到這裡",
+    "availableOptions": "可用選項：",
     "options": {
       "a": {
         "title": "DNA和染色體",
@@ -53,6 +55,41 @@
     "continue": "繼續",
     "next": "下一個場景"
   },
+  "genderTherapy": {
+    "title": "關於性別治療的思考",
+    "subtitle": "通過對比理解需求的本質",
+    "table": {
+      "project": "項目",
+      "freeDemand": "免費時：100人裡有多少人想要？（大眾需求）",
+      "paidDemand": "自費時：還願意做的人？（真實需求）",
+      "essence": "揭示的本質",
+      "luxuryTravel": {
+        "project": "全家免費豪華旅遊（吃住行全包）",
+        "freeDemand": "⭐⭐⭐⭐⭐（≈100%）幾乎人人想要",
+        "paidDemand": "⭐（5–20%）需要自費後大量減少",
+        "essence": "典型\"特權福利\"：免費 = 蜂擁；付費 = 跑光"
+      },
+      "cosmetic": {
+        "project": "美容項目（Cosmetic Procedures）",
+        "freeDemand": "⭐⭐⭐⭐（多數人想要）",
+        "paidDemand": "⭐⭐（自費者減少很多）",
+        "essence": "大眾欲望：免費很高，但不是人生必需"
+      },
+      "genderTherapy": {
+        "project": "性別治療（HRT, SRS）",
+        "freeDemand": "⭐（<1%）幾乎沒人要",
+        "freeDemandNote": "你或你的配偶會僅僅因為免費就想要它嗎？",
+        "paidDemand": "⭐（≈同一群少數人仍需）",
+        "essence": "少數必要醫療：免費/自費都只有極少數真正需要"
+      },
+      "diabetes": {
+        "project": "糖尿病治療（Diabetes Treatment）",
+        "freeDemand": "⭐⭐（只限患者 10–15%）",
+        "paidDemand": "⭐⭐（必須治）",
+        "essence": "醫療必需：價格不改變需求，關係生命健康"
+      }
+    }
+  },
   "conclusion": {
     "title": "結論",
     "content": "無論政治觀點或宗教意見如何，跨性別者都是人。你不能說他們不屬於人類。如果你同意他們是人，那麼我們必須面對他們的性別認同。即使人們可能認為DNA/染色體（a）或出生時分配的性別（b）應該是識別性別的最決定性因素，但在現實中，他們只能通過第二性徵（d）或性別表達（e）來決定一個人的性別。此外，即使一個人選擇選項C，他們在現實中也沒有辦法檢查它。他們仍然通過選項d和e來判斷人們的性別，除非一個人的第二性徵是男性化的。但這不能成為規則，對吧？"
@@ -62,7 +99,8 @@
     "subtitle": "跨性別者面臨的挑戰",
     "content": "在現實世界中，許多跨性別者面臨著來自許多地方的巨大挑戰，比如與自己的分配性別作鬥爭、來自家人和朋友的接受、來自工作和學校的挑戰、被毆打或自殺等等。這些是大多數跨性別者。他們經歷的歧視遠遠超過了他們從這種身份中獲得的好處。確實，未成年人和體育的情況值得進一步討論，但我們首先需要邏輯思考並反思對性別的認知。我在這裡祝願這些跨性別者和任何有性別不安的人，和平與幸福。",
     "discord": "加入Discord討論",
-    "discordDescription": "歡迎在我們的Discord服務器上交流"
+    "discordDescription": "歡迎在我們的Discord服務器上交流",
+    "joinDiscord": "加入Discord服務器"
   }
 }
 

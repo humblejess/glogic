@@ -53,13 +53,13 @@
           v-else
           class="flex-1 flex items-center justify-center text-gray-400 text-sm italic border-2 border-dashed border-gray-300 rounded-lg px-3 py-2 h-12"
         >
-          Drop option here
+          {{ t?.ranking?.dropHere || 'Drop option here' }}
         </div>
       </div>
       
       <!-- Available options (not yet placed) -->
       <div v-if="unplacedItems.length > 0" class="mt-4 pt-4 border-t border-gray-200">
-        <h3 class="text-sm font-semibold mb-3 text-gray-700">Available Options:</h3>
+        <h3 class="text-sm font-semibold mb-3 text-gray-700">{{ t?.ranking?.availableOptions || 'Available Options:' }}</h3>
         <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
           <div
             v-for="item in unplacedItems"

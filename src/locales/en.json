@@ -17,6 +17,8 @@
     "title": "How Do You Identify Gender?",
     "subtitle": "Please rank the following criteria by importance",
     "instructions": "Drag to reorder (desktop) or tap to select priority (mobile)",
+    "dropHere": "Drop option here",
+    "availableOptions": "Available Options:",
     "options": {
       "a": {
         "title": "DNA and Chromosomes",
@@ -53,6 +55,41 @@
     "continue": "Continue",
     "next": "Next Scenario"
   },
+  "genderTherapy": {
+    "title": "Reflections on Gender Therapy",
+    "subtitle": "Understanding the true nature of demand through comparison",
+    "table": {
+      "project": "Project",
+      "freeDemand": "When Free: How many out of 100 people want it? (Public Demand)",
+      "paidDemand": "When Self-Paid: Who still wants it? (Real Demand)",
+      "essence": "Revealed Nature",
+      "luxuryTravel": {
+        "project": "Free Luxury Family Trip (All-Inclusive)",
+        "freeDemand": "⭐⭐⭐⭐⭐ (≈100%) Almost everyone wants it",
+        "paidDemand": "⭐ (5–20%) Significantly reduced when self-paid",
+        "essence": "Typical 'Privilege Benefit': Free = Swarm; Paid = Flee"
+      },
+      "cosmetic": {
+        "project": "Cosmetic Procedures",
+        "freeDemand": "⭐⭐⭐⭐ (Most people want it)",
+        "paidDemand": "⭐⭐ (Many fewer when self-paid)",
+        "essence": "Public Desire: High when free, but not essential for life"
+      },
+      "genderTherapy": {
+        "project": "Gender Therapy (HRT, SRS)",
+        "freeDemand": "⭐ (<1%) Almost no one wants it",
+        "freeDemandNote": "Do you want it for you or your spouse just for free?",
+        "paidDemand": "⭐ (≈Same small group still needs it)",
+        "essence": "Minority Medical Necessity: Only a small minority truly need it, whether free or paid"
+      },
+      "diabetes": {
+        "project": "Diabetes Treatment",
+        "freeDemand": "⭐⭐ (Only for patients 10–15%)",
+        "paidDemand": "⭐⭐ (Must treat)",
+        "essence": "Medical Necessity: Price doesn't change demand, relates to life and health"
+      }
+    }
+  },
   "conclusion": {
     "title": "Conclusion",
     "content": "No matter what political view or religious opinion, transgender people are human beings. You cannot say they don't belong to human. If you agree they are human, then we have to face their gender identity. Even if people may think the DNA/chromosome (a) or the sex assigned at birth (b) should be the most decisive factor to identify gender, but in reality, they can only decide one's gender by secondary sexual characteristics (d) or gender expression (e). Furthermore, even if one chooses option C, they have no way to check it in reality. They still judge people's gender by option d and e unless one's secondary sexual characteristics are masculine. But that can't be a rule, right?"
@@ -62,7 +99,8 @@
     "subtitle": "Challenges Faced by Transgender People",
     "content": "In the real world, many transgender people are facing big challenges from many places, like struggling with their assigned sex, acceptance from family members and friends, challenges from work and school, being beaten or committing suicide, etc. These are the majority of transgender people. The discrimination they experience far outweighs the benefits they gain from this status. Indeed, the situation of minors and sports is worthy of further discussion, but we need to think logically and reflect on the cognition of gender first. I am here to wish these trans people and anyone with gender dysphoria, peace and happiness.",
     "discord": "Join the Discussion on Discord",
-    "discordDescription": "Welcome to communicate on our Discord server"
+    "discordDescription": "Welcome to communicate on our Discord server",
+    "joinDiscord": "Join Discord Server"
   }
 }
 

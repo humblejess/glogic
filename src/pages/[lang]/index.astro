@@ -4,6 +4,7 @@ import AbstractShape from '../../components/AbstractShape.astro';
 import RankingComponent from '../../components/RankingComponent.vue';
 import ScenarioDisplay from '../../components/ScenarioDisplay.vue';
 import { supportedLanguages } from '../../utils/i18n';
+import { discordConfig } from '../../config/discord';
 import en from '../../locales/en.json';
 import zhCN from '../../locales/zh-CN.json';
 import zhTW from '../../locales/zh-TW.json';
@@ -116,7 +117,71 @@ const options = [
       </div>
     </section>
 
-    <!-- Section 4: Conclusion -->
+    <!-- Section 4: Gender Therapy Reflection -->
+    <section id="genderTherapy" class="min-h-screen py-12 px-4 relative overflow-hidden">
+      <AbstractShape type="blob" size="md" color="primary" position="top-right" opacity={0.08} />
+      <AbstractShape type="circle" size="sm" color="accent" position="bottom-left" opacity={0.06} />
+      
+      <div class="container-custom relative z-10">
+        <div class="text-center mb-12">
+          <div class="inline-block mb-6">
+            <div class="w-20 h-20 rounded-full bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center shadow-lg mx-auto">
+              <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+              </svg>
+            </div>
+          </div>
+          <h1 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary-600 to-accent-500 bg-clip-text text-transparent">
+            {t.genderTherapy.title}
+          </h1>
+          <p class="text-xl text-gray-600">{t.genderTherapy.subtitle}</p>
+        </div>
+
+        <div class="max-w-5xl mx-auto overflow-x-auto">
+          <table class="w-full border-collapse bg-white rounded-xl shadow-sm">
+            <thead>
+              <tr class="bg-gradient-to-r from-primary-50 to-accent-50">
+                <th class="border border-gray-300 px-4 py-3 text-left font-bold text-gray-900">{t.genderTherapy.table.project}</th>
+                <th class="border border-gray-300 px-4 py-3 text-left font-bold text-gray-900">{t.genderTherapy.table.freeDemand}</th>
+                <th class="border border-gray-300 px-4 py-3 text-left font-bold text-gray-900">{t.genderTherapy.table.paidDemand}</th>
+                <th class="border border-gray-300 px-4 py-3 text-left font-bold text-gray-900">{t.genderTherapy.table.essence}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="border border-gray-300 px-4 py-3 font-semibold text-gray-900">{t.genderTherapy.table.luxuryTravel.project}</td>
+                <td class="border border-gray-300 px-4 py-3 text-gray-700">{t.genderTherapy.table.luxuryTravel.freeDemand}</td>
+                <td class="border border-gray-300 px-4 py-3 text-gray-700">{t.genderTherapy.table.luxuryTravel.paidDemand}</td>
+                <td class="border border-gray-300 px-4 py-3 text-gray-700 italic">{t.genderTherapy.table.luxuryTravel.essence}</td>
+              </tr>
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="border border-gray-300 px-4 py-3 font-semibold text-gray-900">{t.genderTherapy.table.cosmetic.project}</td>
+                <td class="border border-gray-300 px-4 py-3 text-gray-700">{t.genderTherapy.table.cosmetic.freeDemand}</td>
+                <td class="border border-gray-300 px-4 py-3 text-gray-700">{t.genderTherapy.table.cosmetic.paidDemand}</td>
+                <td class="border border-gray-300 px-4 py-3 text-gray-700 italic">{t.genderTherapy.table.cosmetic.essence}</td>
+              </tr>
+              <tr class="hover:bg-primary-50 transition-colors">
+                <td class="border border-gray-300 px-4 py-3 font-semibold text-primary-700 bg-primary-50">{t.genderTherapy.table.genderTherapy.project}</td>
+                <td class="border border-gray-300 px-4 py-3 text-primary-700 bg-primary-50">
+                  <div>{t.genderTherapy.table.genderTherapy.freeDemand}</div>
+                  <div class="text-xs mt-1 text-accent-600 font-medium italic">{t.genderTherapy.table.genderTherapy.freeDemandNote}</div>
+                </td>
+                <td class="border border-gray-300 px-4 py-3 text-primary-700 bg-primary-50">{t.genderTherapy.table.genderTherapy.paidDemand}</td>
+                <td class="border border-gray-300 px-4 py-3 text-primary-700 italic font-medium bg-primary-50">{t.genderTherapy.table.genderTherapy.essence}</td>
+              </tr>
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="border border-gray-300 px-4 py-3 font-semibold text-gray-900">{t.genderTherapy.table.diabetes.project}</td>
+                <td class="border border-gray-300 px-4 py-3 text-gray-700">{t.genderTherapy.table.diabetes.freeDemand}</td>
+                <td class="border border-gray-300 px-4 py-3 text-gray-700">{t.genderTherapy.table.diabetes.paidDemand}</td>
+                <td class="border border-gray-300 px-4 py-3 text-gray-700 italic">{t.genderTherapy.table.diabetes.essence}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Conclusion -->
     <section id="conclusion" class="min-h-screen py-12 px-4 relative overflow-hidden">
       <AbstractShape type="blob" size="lg" color="primary" position="top-left" opacity={0.08} />
       <AbstractShape type="square" size="md" color="accent" position="bottom-right" opacity={0.06} />
@@ -153,7 +218,7 @@ const options = [
       </div>
     </section>
 
-    <!-- Section 5: Call to Action -->
+    <!-- Section 6: Call to Action -->
     <section id="action" class="min-h-screen py-12 px-4 relative overflow-hidden">
       <AbstractShape type="blob" size="md" color="primary" position="top-right" opacity={0.08} />
       <AbstractShape type="circle" size="lg" color="accent" position="bottom-left" opacity={0.06} />
@@ -199,13 +264,30 @@ const options = [
               </div>
               <h2 class="text-2xl font-bold mb-4 text-gray-900">{t.callToAction.discord}</h2>
               <p class="text-gray-600 mb-6">{t.callToAction.discordDescription}</p>
+              
+              {/* Discord Widget (可选) */}
+              {discordConfig.enableWidget && discordConfig.widgetUrl && (
+                <div class="mb-6 flex justify-center">
+                  <iframe 
+                    src={discordConfig.widgetUrl}
+                    width="350" 
+                    height="500" 
+                    allowtransparency="true"
+                    frameborder="0" 
+                    sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+                    class="rounded-lg shadow-lg"
+                  ></iframe>
+                </div>
+              )}
+              
+              {/* 加入 Discord 按钮 */}
               <a 
-                href="#" 
+                href={discordConfig.inviteUrl}
                 class="btn-primary inline-block shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Join Discord Server
+                {t.callToAction.joinDiscord || 'Join Discord Server'}
               </a>
             </div>
           </div>

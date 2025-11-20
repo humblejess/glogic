@@ -17,6 +17,8 @@
     "title": "Comment identifiez-vous le genre ?",
     "subtitle": "Veuillez classer les critères suivants par importance",
     "instructions": "Glissez pour réorganiser (bureau) ou appuyez pour sélectionner la priorité (mobile)",
+    "dropHere": "Déposez l'option ici",
+    "availableOptions": "Options disponibles :",
     "options": {
       "a": {
         "title": "ADN et Chromosomes",
@@ -53,6 +55,41 @@
     "continue": "Continuer",
     "next": "Scénario suivant"
   },
+  "genderTherapy": {
+    "title": "Réflexions sur la Thérapie de Genre",
+    "subtitle": "Comprendre la vraie nature de la demande par la comparaison",
+    "table": {
+      "project": "Projet",
+      "freeDemand": "Gratuit : Combien de personnes sur 100 le veulent ? (Demande publique)",
+      "paidDemand": "Payant : Qui le veut encore ? (Demande réelle)",
+      "essence": "Nature révélée",
+      "luxuryTravel": {
+        "project": "Voyage de luxe familial gratuit (Tout compris)",
+        "freeDemand": "⭐⭐⭐⭐⭐ (≈100%) Presque tout le monde le veut",
+        "paidDemand": "⭐ (5–20%) Réduit considérablement lorsqu'il est payant",
+        "essence": "Avantage privilégié typique : Gratuit = Affluence ; Payant = Fuite"
+      },
+      "cosmetic": {
+        "project": "Procédures esthétiques",
+        "freeDemand": "⭐⭐⭐⭐ (La plupart des gens le veulent)",
+        "paidDemand": "⭐⭐ (Beaucoup moins lorsqu'il est payant)",
+        "essence": "Désir public : Élevé lorsqu'il est gratuit, mais pas essentiel pour la vie"
+      },
+      "genderTherapy": {
+        "project": "Thérapie de Genre (HRT, SRS)",
+        "freeDemand": "⭐ (<1%) Presque personne ne le veut",
+        "freeDemandNote": "Le voudriez-vous pour vous ou votre conjoint simplement parce que c'est gratuit ?",
+        "paidDemand": "⭐ (≈Le même petit groupe en a encore besoin)",
+        "essence": "Nécessité médicale minoritaire : Seule une petite minorité en a vraiment besoin, qu'elle soit gratuite ou payante"
+      },
+      "diabetes": {
+        "project": "Traitement du diabète",
+        "freeDemand": "⭐⭐ (Seulement pour les patients 10–15%)",
+        "paidDemand": "⭐⭐ (Doit être traité)",
+        "essence": "Nécessité médicale : Le prix ne change pas la demande, cela concerne la vie et la santé"
+      }
+    }
+  },
   "conclusion": {
     "title": "Conclusion",
     "content": "Peu importe le point de vue politique ou l'opinion religieuse, les personnes transgenres sont des êtres humains. Vous ne pouvez pas dire qu'ils n'appartiennent pas à l'humanité. Si vous êtes d'accord qu'ils sont humains, alors nous devons faire face à leur identité de genre. Même si les gens peuvent penser que l'ADN/les chromosomes (a) ou le sexe assigné à la naissance (b) devraient être le facteur le plus décisif pour identifier le genre, mais en réalité, ils ne peuvent décider du genre d'une personne que par les caractéristiques sexuelles secondaires (d) ou l'expression de genre (e). De plus, même si on choisit l'option C, on n'a aucun moyen de le vérifier dans la réalité. On juge toujours le genre des gens par les options d et e, sauf si les caractéristiques sexuelles secondaires d'une personne sont masculines. Mais cela ne peut pas être une règle, n'est-ce pas ?"
@@ -62,7 +99,8 @@
     "subtitle": "Défis auxquels sont confrontées les personnes transgenres",
     "content": "Dans le monde réel, de nombreuses personnes transgenres font face à de grands défis de nombreux endroits, comme lutter avec leur sexe assigné, l'acceptation des membres de la famille et des amis, les défis du travail et de l'école, être battues ou se suicider, etc. Ce sont la majorité des personnes transgenres. La discrimination qu'elles subissent dépasse de loin les avantages qu'elles tirent de ce statut. En effet, la situation des mineurs et du sport mérite une discussion plus approfondie, mais nous devons d'abord penser logiquement et réfléchir à la cognition du genre. Je souhaite ici à ces personnes trans et à toute personne souffrant de dysphorie de genre, paix et bonheur.",
     "discord": "Rejoignez la discussion sur Discord",
-    "discordDescription": "Bienvenue pour communiquer sur notre serveur Discord"
+    "discordDescription": "Bienvenue pour communiquer sur notre serveur Discord",
+    "joinDiscord": "Rejoindre le serveur Discord"
   }
 }
 

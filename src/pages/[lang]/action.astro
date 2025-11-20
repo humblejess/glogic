@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import AbstractShape from '../../components/AbstractShape.astro';
 import { supportedLanguages } from '../../utils/i18n';
+import { DISCORD_INVITE_URL } from '../../config/discord';
 import en from '../../locales/en.json';
 import zhCN from '../../locales/zh-CN.json';
 import zhTW from '../../locales/zh-TW.json';
@@ -73,12 +74,12 @@ const t = locales[lang || 'en'] || en;
             <h2 class="text-2xl font-bold mb-4 text-gray-900">{t.callToAction.discord}</h2>
             <p class="text-gray-600 mb-6">{t.callToAction.discordDescription}</p>
             <a 
-              href="#" 
+              href={DISCORD_INVITE_URL}
               class="btn-primary inline-block shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Join Discord Server
+              {t.callToAction.joinDiscord || 'Join Discord Server'}
             </a>
           </div>
         </div>

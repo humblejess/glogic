@@ -17,6 +17,8 @@
     "title": "你如何识别性别？",
     "subtitle": "请按重要性对以下标准进行排序",
     "instructions": "拖拽排序（桌面）或点击选择优先级（移动端）",
+    "dropHere": "拖放选项到这里",
+    "availableOptions": "可用选项：",
     "options": {
       "a": {
         "title": "DNA和染色体",
@@ -53,6 +55,41 @@
     "continue": "继续",
     "next": "下一个场景"
   },
+  "genderTherapy": {
+    "title": "关于性别治疗的思考",
+    "subtitle": "通过对比理解需求的本质",
+    "table": {
+      "project": "项目",
+      "freeDemand": "免费时：100人里有多少人想要？（大众需求）",
+      "paidDemand": "自费时：还愿意做的人？（真实需求）",
+      "essence": "揭示的本质",
+      "luxuryTravel": {
+        "project": "全家免费豪华旅游（吃住行全包）",
+        "freeDemand": "⭐⭐⭐⭐⭐（≈100%）几乎人人想要",
+        "paidDemand": "⭐（5–20%）需要自费后大量减少",
+        "essence": "典型\"特权福利\"：免费 = 蜂拥；付费 = 跑光"
+      },
+      "cosmetic": {
+        "project": "美容项目（Cosmetic Procedures）",
+        "freeDemand": "⭐⭐⭐⭐（多数人想要）",
+        "paidDemand": "⭐⭐（自费者减少很多）",
+        "essence": "大众欲望：免费很高，但不是人生必需"
+      },
+      "genderTherapy": {
+        "project": "性别治疗（HRT, SRS）",
+        "freeDemand": "⭐（<1%）几乎没人要",
+        "freeDemandNote": "你或你的配偶会仅仅因为免费就想要它吗？",
+        "paidDemand": "⭐（≈同一群少数人仍需）",
+        "essence": "少数必要医疗：免费/自费都只有极少数真正需要"
+      },
+      "diabetes": {
+        "project": "糖尿病治疗（Diabetes Treatment）",
+        "freeDemand": "⭐⭐（只限患者 10–15%）",
+        "paidDemand": "⭐⭐（必须治）",
+        "essence": "医疗必需：价格不改变需求，关系生命健康"
+      }
+    }
+  },
   "conclusion": {
     "title": "结论",
     "content": "无论政治观点或宗教意见如何，跨性别者都是人。你不能说他们不属于人类。如果你同意他们是人，那么我们必须面对他们的性别认同。即使人们可能认为DNA/染色体（a）或出生时分配的性别（b）应该是识别性别的最决定性因素，但在现实中，他们只能通过第二性征（d）或性别表达（e）来决定一个人的性别。此外，即使一个人选择选项C，他们在现实中也没有办法检查它。他们仍然通过选项d和e来判断人们的性别，除非一个人的第二性征是男性化的。但这不能成为规则，对吧？"
@@ -62,7 +99,8 @@
     "subtitle": "跨性别者面临的挑战",
     "content": "在现实世界中，许多跨性别者面临着来自许多地方的巨大挑战，比如与自己的分配性别作斗争、来自家人和朋友的接受、来自工作和学校的挑战、被殴打或自杀等等。这些是大多数跨性别者。他们经历的歧视远远超过了他们从这种身份中获得的好处。确实，未成年人和体育的情况值得进一步讨论，但我们首先需要逻辑思考并反思对性别的认知。我在这里祝愿这些跨性别者和任何有性别不安的人，和平与幸福。",
     "discord": "加入Discord讨论",
-    "discordDescription": "欢迎在我们的Discord服务器上交流"
+    "discordDescription": "欢迎在我们的Discord服务器上交流",
+    "joinDiscord": "加入Discord服务器"
   }
 }
 

@@ -17,6 +17,8 @@
     "title": "¿Cómo identificas el género?",
     "subtitle": "Por favor, clasifica los siguientes criterios por importancia",
     "instructions": "Arrastra para reorganizar (escritorio) o toca para seleccionar prioridad (móvil)",
+    "dropHere": "Suelta la opción aquí",
+    "availableOptions": "Opciones disponibles:",
     "options": {
       "a": {
         "title": "ADN y Cromosomas",
@@ -53,6 +55,41 @@
     "continue": "Continuar",
     "next": "Siguiente escenario"
   },
+  "genderTherapy": {
+    "title": "Reflexiones sobre la Terapia de Género",
+    "subtitle": "Entender la verdadera naturaleza de la demanda mediante la comparación",
+    "table": {
+      "project": "Proyecto",
+      "freeDemand": "Gratis: ¿Cuántas de cada 100 personas lo quieren? (Demanda pública)",
+      "paidDemand": "De pago: ¿Quién todavía lo quiere? (Demanda real)",
+      "essence": "Naturaleza revelada",
+      "luxuryTravel": {
+        "project": "Viaje de lujo familiar gratis (Todo incluido)",
+        "freeDemand": "⭐⭐⭐⭐⭐ (≈100%) Casi todos lo quieren",
+        "paidDemand": "⭐ (5–20%) Se reduce significativamente cuando es de pago",
+        "essence": "Beneficio privilegiado típico: Gratis = Multitud; De pago = Huida"
+      },
+      "cosmetic": {
+        "project": "Procedimientos cosméticos",
+        "freeDemand": "⭐⭐⭐⭐ (La mayoría de la gente lo quiere)",
+        "paidDemand": "⭐⭐ (Muchos menos cuando es de pago)",
+        "essence": "Deseo público: Alto cuando es gratis, pero no esencial para la vida"
+      },
+      "genderTherapy": {
+        "project": "Terapia de Género (HRT, SRS)",
+        "freeDemand": "⭐ (<1%) Casi nadie lo quiere",
+        "freeDemandNote": "¿Lo querrías para ti o tu cónyuge solo porque es gratis?",
+        "paidDemand": "⭐ (≈El mismo pequeño grupo todavía lo necesita)",
+        "essence": "Necesidad médica minoritaria: Solo una pequeña minoría realmente lo necesita, ya sea gratis o de pago"
+      },
+      "diabetes": {
+        "project": "Tratamiento de la diabetes",
+        "freeDemand": "⭐⭐ (Solo para pacientes 10–15%)",
+        "paidDemand": "⭐⭐ (Debe tratarse)",
+        "essence": "Necesidad médica: El precio no cambia la demanda, se relaciona con la vida y la salud"
+      }
+    }
+  },
   "conclusion": {
     "title": "Conclusión",
     "content": "No importa el punto de vista político o la opinión religiosa, las personas transgénero son seres humanos. No puedes decir que no pertenecen a la humanidad. Si estás de acuerdo en que son humanos, entonces tenemos que enfrentar su identidad de género. Incluso si las personas pueden pensar que el ADN/los cromosomas (a) o el sexo asignado al nacer (b) deberían ser el factor más decisivo para identificar el género, pero en realidad, solo pueden decidir el género de una persona por las características sexuales secundarias (d) o la expresión de género (e). Además, incluso si uno elige la opción C, no tienen forma de verificarlo en la realidad. Todavía juzgan el género de las personas por las opciones d y e, a menos que las características sexuales secundarias de una persona sean masculinas. Pero eso no puede ser una regla, ¿verdad?"
@@ -62,7 +99,8 @@
     "subtitle": "Desafíos que enfrentan las personas transgénero",
     "content": "En el mundo real, muchas personas transgénero enfrentan grandes desafíos desde muchos lugares, como luchar con su sexo asignado, la aceptación de miembros de la familia y amigos, desafíos del trabajo y la escuela, ser golpeadas o suicidarse, etc. Estas son la mayoría de las personas transgénero. La discriminación que experimentan supera con creces los beneficios que obtienen de este estatus. De hecho, la situación de menores y deportes merece una discusión más profunda, pero primero necesitamos pensar lógicamente y reflexionar sobre la cognición del género. Estoy aquí para desear a estas personas trans y a cualquiera con disforia de género, paz y felicidad.",
     "discord": "Únete a la discusión en Discord",
-    "discordDescription": "Bienvenido a comunicarte en nuestro servidor de Discord"
+    "discordDescription": "Bienvenido a comunicarte en nuestro servidor de Discord",
+    "joinDiscord": "Unirse al servidor de Discord"
   }
 }
 
