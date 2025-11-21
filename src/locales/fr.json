@@ -15,8 +15,8 @@
   },
   "ranking": {
     "title": "Comment identifiez-vous le genre ?",
-    "subtitle": "Veuillez classer les critères suivants par importance, surtout lorsqu'ils ne sont pas cohérents.",
-    "instructions": "Glissez pour réorganiser (bureau) ou appuyez pour sélectionner la priorité (mobile)",
+    "subtitle": "Il existe de nombreux facteurs qui déterminent le genre. Pour la plupart des gens, ces facteurs sont cohérents. Mais pour certaines personnes, ils sont incohérents, voire contradictoires. Pour de telles situations, comment classeriez-vous les critères de détermination du genre par importance et priorité ?",
+    "instructions": "Veuillez faire glisser les options vers leurs positions classées.",
     "dropHere": "Déposez l'option ici",
     "availableOptions": "Options disponibles :",
     "options": {

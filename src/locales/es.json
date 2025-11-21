@@ -15,8 +15,8 @@
   },
   "ranking": {
     "title": "¿Cómo identificas el género?",
-    "subtitle": "Por favor, clasifica los siguientes criterios por importancia, especialmente cuando NO son consistentes.",
-    "instructions": "Arrastra para reorganizar (escritorio) o toca para seleccionar prioridad (móvil)",
+    "subtitle": "Hay muchos factores que determinan el género. Para la mayoría de las personas, estos factores son consistentes. Pero para algunas personas, son inconsistentes, incluso contradictorios. Para tales situaciones, ¿cómo clasificarías los criterios para determinar el género por importancia y prioridad?",
+    "instructions": "Por favor, arrastra las opciones a sus posiciones clasificadas.",
     "dropHere": "Suelta la opción aquí",
     "availableOptions": "Opciones disponibles:",
     "options": {
