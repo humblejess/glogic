@@ -55,7 +55,9 @@
     "title": "Escenarios Reales",
     "subtitle": "Veamos cómo funcionan tus elecciones en la realidad",
     "continue": "Continuar",
-    "next": "Siguiente escenario"
+    "next": "Siguiente escenario",
+    "noRanking": "No se encontraron datos de clasificación. Por favor, complete la clasificación primero.",
+    "goToRanking": "Ir a la clasificación"
   },
   "genderTherapy": {
     "title": "Reflexiones sobre la Terapia de Género",
@@ -100,6 +102,7 @@
   "callToAction": {
     "title": "La Realidad",
     "subtitle": "Desafíos que enfrentan las personas transgénero",
+    "intro": "Para muchas personas, el género es solo una ideología. Para otras, es una realidad cotidiana con la que deben vivir.",
     "content": "En el mundo real, muchas personas transgénero enfrentan grandes desafíos desde muchos lugares, como luchar con su sexo asignado, la aceptación de miembros de la familia y amigos, desafíos del trabajo y la escuela, ser golpeadas o suicidarse, etc. Estas son la mayoría de las personas transgénero. La discriminación que experimentan supera con creces los beneficios que obtienen de este estatus. De hecho, la situación de menores y deportes merece una discusión más profunda, pero primero necesitamos pensar lógicamente y reflexionar sobre la cognición del género. Estoy aquí para desear a estas personas trans y a cualquiera con disforia de género, paz y felicidad.",
     "discord": "Únete a la discusión en Discord",
     "discordDescription": "Bienvenido a comunicarte en nuestro servidor de Discord",

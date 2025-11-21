@@ -55,7 +55,9 @@
     "title": "Real-World Scenarios",
     "subtitle": "Let's see how your choices work in reality",
     "continue": "Continue",
-    "next": "Next Scenario"
+    "next": "Next Scenario",
+    "noRanking": "No ranking data found. Please complete the ranking first.",
+    "goToRanking": "Go to Ranking"
   },
   "genderTherapy": {
     "title": "Reflections on Gender Therapy",
@@ -100,6 +102,7 @@
   "callToAction": {
     "title": "The Reality",
     "subtitle": "Challenges Faced by Transgender People",
+    "intro": "For many people, gender is just an ideology. For others, it is a day-to-day reality they must live with.",
     "content": "In the real world, many transgender people are facing big challenges from many places, like struggling with their assigned sex, acceptance from family members and friends, challenges from work and school, being beaten or committing suicide, etc. These are the majority of transgender people. The discrimination they experience far outweighs the benefits they gain from this status. Indeed, the situation of minors and sports is worthy of further discussion, but we need to think logically and reflect on the cognition of gender first. I am here to wish these trans people and anyone with gender dysphoria, peace and happiness.",
     "discord": "Join the Discussion on Discord",
     "discordDescription": "Welcome to communicate on our Discord server",

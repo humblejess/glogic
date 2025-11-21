@@ -55,7 +55,9 @@
     "title": "Scénarios Réels",
     "subtitle": "Voyons comment vos choix fonctionnent dans la réalité",
     "continue": "Continuer",
-    "next": "Scénario suivant"
+    "next": "Scénario suivant",
+    "noRanking": "Aucune donnée de classement trouvée. Veuillez d'abord compléter le classement.",
+    "goToRanking": "Aller au classement"
   },
   "genderTherapy": {
     "title": "Réflexions sur la Thérapie de Genre",
@@ -100,6 +102,7 @@
   "callToAction": {
     "title": "La Réalité",
     "subtitle": "Défis auxquels sont confrontées les personnes transgenres",
+    "intro": "Pour beaucoup de gens, le genre n'est qu'une idéologie. Pour d'autres, c'est une réalité quotidienne avec laquelle ils doivent vivre.",
     "content": "Dans le monde réel, de nombreuses personnes transgenres font face à de grands défis de nombreux endroits, comme lutter avec leur sexe assigné, l'acceptation des membres de la famille et des amis, les défis du travail et de l'école, être battues ou se suicider, etc. Ce sont la majorité des personnes transgenres. La discrimination qu'elles subissent dépasse de loin les avantages qu'elles tirent de ce statut. En effet, la situation des mineurs et du sport mérite une discussion plus approfondie, mais nous devons d'abord penser logiquement et réfléchir à la cognition du genre. Je souhaite ici à ces personnes trans et à toute personne souffrant de dysphorie de genre, paix et bonheur.",
     "discord": "Rejoignez la discussion sur Discord",
     "discordDescription": "Bienvenue pour communiquer sur notre serveur Discord",
