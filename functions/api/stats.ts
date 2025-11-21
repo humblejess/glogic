@@ -6,7 +6,14 @@ export async function onRequestGet(context: any) {
     const db = env.DB;
     
     if (!db) {
-      return new Response(JSON.stringify({ error: 'Database not available' }), {
+      return new Response(JSON.stringify({ 
+        error: 'Database not available',
+        debug: {
+          hasEnv: !!env,
+          envKeys: env ? Object.keys(env) : [],
+          dbType: typeof db
+        }
+      }), {
         status: 500,
         headers: { 'Content-Type': 'application/json' }
       });
