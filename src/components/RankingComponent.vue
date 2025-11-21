@@ -549,7 +549,7 @@ function handleMobileDragEnd(event: TouchEvent, targetSlotIndex?: number) {
   dragOverSlot.value = null;
 }
 
-function confirmRanking() {
+async function confirmRanking() {
   // Both mobile and desktop use slots now
   const ranking = slots.value
     .filter(Boolean)
@@ -562,6 +562,35 @@ function confirmRanking() {
   
   if (typeof window !== 'undefined') {
     sessionStorage.setItem('ranking', JSON.stringify(ranking));
+    
+    // 保存到数据库
+    try {
+      // 生成或获取会话ID
+      function getSessionId(): string {
+        let sessionId = sessionStorage.getItem('session_id');
+        if (!sessionId) {
+          sessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+          sessionStorage.setItem('session_id', sessionId);
+        }
+        return sessionId;
+      }
+      
+      const sessionId = getSessionId();
+      const currentLang = props.currentLang || 'en';
+      
+      await fetch('/api/ranking', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ranking,
+          language: currentLang,
+          sessionId
+        })
+      });
+    } catch (error) {
+      console.error('Failed to save ranking:', error);
+      // 不阻止用户继续，静默失败
+    }
     
     // Trigger custom event to notify ScenarioDisplay to reload
     window.dispatchEvent(new CustomEvent('rankingUpdated'));

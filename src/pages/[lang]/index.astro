@@ -400,3 +400,36 @@ const options = [
     animation: gradient 3s ease infinite;
   }
 </style>
+
+<script>
+  // 记录页面访问
+  if (typeof window !== 'undefined') {
+    // 生成或获取会话ID
+    function getSessionId(): string {
+      let sessionId = sessionStorage.getItem('session_id');
+      if (!sessionId) {
+        sessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+        sessionStorage.setItem('session_id', sessionId);
+      }
+      return sessionId;
+    }
+    
+    // 获取当前语言
+    const currentLang = window.location.pathname.split('/')[1] || 'en';
+    const sessionId = getSessionId();
+    const pagePath = window.location.pathname;
+    
+    // 异步发送访问记录，不阻塞页面加载
+    fetch('/api/view?path=' + encodeURIComponent(pagePath), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        sessionId,
+        language: currentLang
+      })
+    }).catch(err => {
+      // 静默失败，不影响用户体验
+      console.error('Failed to log page view:', err);
+    });
+  }
+</script>
