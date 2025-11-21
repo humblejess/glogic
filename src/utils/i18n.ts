@@ -1,13 +1,13 @@
 export type Language = 'en' | 'zh-CN' | 'zh-TW' | 'fr' | 'es';
 
-export const supportedLanguages: Language[] = ['en', 'zh-CN', 'zh-TW', 'fr', 'es'];
+export const supportedLanguages: Language[] = ['en', 'es', 'fr', 'zh-CN', 'zh-TW'];
 
 export const languageNames: Record<Language, string> = {
   'en': 'English',
+  'es': 'Español',
   'zh-CN': '简体中文',
   'zh-TW': '繁體中文',
   'fr': 'Français',
-  'es': 'Español',
 };
 
 export function getLanguageFromPath(pathname: string): Language {
