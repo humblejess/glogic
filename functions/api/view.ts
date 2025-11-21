@@ -40,9 +40,14 @@ export async function onRequestPost(context: any) {
       status: 200,
       headers: { 'Content-Type': 'application/json' }
     });
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error saving page view:', error);
-    return new Response(JSON.stringify({ error: 'Internal server error' }), {
+    // 返回详细错误信息用于调试
+    return new Response(JSON.stringify({ 
+      error: 'Internal server error',
+      message: error?.message || 'Unknown error',
+      stack: error?.stack || ''
+    }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' }
     });
