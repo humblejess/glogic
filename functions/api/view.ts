@@ -16,6 +16,10 @@ export async function onRequestPost(context: any) {
       });
     }
 
+    // 从 Cloudflare 请求头获取 IP 地址（CF-Connecting-IP）
+    // 这是 Cloudflare 提供的真实客户端 IP 地址
+    const ipAddress = request.headers.get('CF-Connecting-IP') || '';
+
     // 从 Cloudflare 请求头获取国家代码（CF-IPCountry）
     // 这是 Cloudflare 自动添加的，基于 IP 地址的地理位置
     // 格式：ISO 3166-1 alpha-2 国家代码（如 US, CN, FR, GB 等）
@@ -24,8 +28,8 @@ export async function onRequestPost(context: any) {
     // 插入访问记录（包含时间戳）
     const createdAt = new Date().toISOString();
     await db.prepare(
-      `INSERT INTO page_views (session_id, page_path, language, referrer, user_agent, country_code, created_at)
-       VALUES (?, ?, ?, ?, ?, ?, ?)`
+      `INSERT INTO page_views (session_id, page_path, language, referrer, user_agent, country_code, ip_address, created_at)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
     ).bind(
       sessionId || 'unknown',
       pagePath,
@@ -33,6 +37,7 @@ export async function onRequestPost(context: any) {
       request.headers.get('referer') || '',
       request.headers.get('user-agent') || '',
       countryCode,
+      ipAddress,
       createdAt
     ).run();
 

@@ -21,16 +21,20 @@ export async function onRequestPost(context: any) {
       });
     }
 
+    // 从 Cloudflare 请求头获取 IP 地址（CF-Connecting-IP）
+    const ipAddress = request.headers.get('CF-Connecting-IP') || '';
+
     // 插入排序记录（包含时间戳）
     const createdAt = new Date().toISOString();
     const result = await db.prepare(
-      `INSERT INTO user_rankings (session_id, ranking_order, language, user_agent, created_at)
-       VALUES (?, ?, ?, ?, ?)`
+      `INSERT INTO user_rankings (session_id, ranking_order, language, user_agent, ip_address, created_at)
+       VALUES (?, ?, ?, ?, ?, ?)`
     ).bind(
       sessionId || 'unknown',
       JSON.stringify(ranking),
       language || 'en',
       request.headers.get('user-agent') || '',
+      ipAddress,
       createdAt
     ).run();
 
