@@ -53,7 +53,10 @@ src/
 
 ## Features
 
-- ✅ Multi-language support (English, 中文简体, 中文繁体, French, Spanish)
+- ✅ Multi-language support (5 languages implemented, 18 languages planned)
+  - **Phase 1 (Implemented)**: English, 中文简体, 中文繁体, Spanish, French
+  - **Phase 2 (Planned)**: German, Portuguese, Italian, Russian, Arabic, Japanese, Korean
+  - **Phase 3 (Future)**: Hindi, Bengali, Indonesian, Urdu, Swahili, Hebrew
 - ✅ Responsive design (mobile, tablet, desktop)
 - ✅ Drag-and-drop ranking (desktop)
 - ✅ Tap-to-select ranking (mobile)

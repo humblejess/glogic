@@ -1,28 +1,56 @@
 ---
 import { supportedLanguages } from '../utils/i18n';
 
-// Redirect to default language (English)
-export function getStaticPaths() {
-  return [
-    {
-      params: {},
-    },
-  ];
-}
-
-// Client-side redirect to /en
+// Default to English (will be overridden by client-side detection)
 const defaultLang = 'en';
 ---
 
 <html>
   <head>
-    <meta http-equiv="refresh" content={`0;url=/${defaultLang}`} />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script>
-      window.location.href = `/${defaultLang}`;
+      // Client-side language detection based on browser settings
+      (function() {
+        // Get browser language
+        const browserLang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+        
+        // Map browser language codes to our supported languages
+        const languageMap = {
+          // English variants
+          'en': 'en', 'en-us': 'en', 'en-gb': 'en', 'en-au': 'en', 'en-ca': 'en',
+          // Spanish variants
+          'es': 'es', 'es-es': 'es', 'es-mx': 'es', 'es-ar': 'es', 'es-co': 'es',
+          // French variants
+          'fr': 'fr', 'fr-fr': 'fr', 'fr-ca': 'fr', 'fr-be': 'fr', 'fr-ch': 'fr',
+          // Chinese variants - Simplified
+          'zh': 'zh-CN', 'zh-cn': 'zh-CN', 'zh-hans': 'zh-CN', 'zh-sg': 'zh-CN',
+          // Chinese variants - Traditional
+          'zh-tw': 'zh-TW', 'zh-hant': 'zh-TW', 'zh-hk': 'zh-TW', 'zh-mo': 'zh-TW',
+        };
+        
+        // Try full language code first (e.g., "zh-cn")
+        let detected = languageMap[browserLang];
+        
+        // If not found, try language code only (e.g., "zh" from "zh-cn")
+        if (!detected) {
+          const langCode = browserLang.split('-')[0];
+          detected = languageMap[langCode];
+        }
+        
+        // Default to English if no match
+        const targetLang = detected || 'en';
+        
+        // Redirect to detected language
+        const currentPath = window.location.pathname;
+        if (currentPath === '/' || currentPath === '/index.html') {
+          window.location.href = '/' + targetLang;
+        }
+      })();
     </script>
   </head>
   <body>
-    <p>Redirecting to <a href={`/${defaultLang}`}>/{defaultLang}</a>...</p>
+    <p>Redirecting...</p>
   </body>
 </html>
 

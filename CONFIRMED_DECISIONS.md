@@ -40,21 +40,35 @@
 
 ### 2. 多语言支持范围 ✅ 已确认
 
-**✅ 决定：第一版支持5种语言**
+**✅ 决定：分三批实现，共18种语言**
 
-**第一版（5种）：**
-- English
-- 中文简体 (Simplified Chinese)
-- 中文繁体 (Traditional Chinese)
-- French
-- Spanish
+#### 第一批（已实现 - 5种）：
+- ✅ English
+- ✅ 中文简体 (Simplified Chinese - zh-CN)
+- ✅ 中文繁体 (Traditional Chinese - zh-TW)
+- ✅ Spanish (Español)
+- ✅ French (Français)
 
-**后续添加（7种）：**
-- Japanese, Italian, Russian, German, Portuguese, Korean, Thai
+#### 第二批（计划中 - 7种）：
+- German (Deutsch)
+- Portuguese (Português)
+- Italian (Italiano)
+- Russian (Русский)
+- Arabic (العربية)
+- Japanese (日本語)
+- Korean (한국어)
+
+#### 第三批（未来计划 - 6种）：
+- Hindi (हिन्दी)
+- Bengali (বাংলা)
+- Indonesian (Bahasa Indonesia)
+- Urdu (اردو)
+- Swahili (Kiswahili)
+- Hebrew (עברית)
 
 **内容来源：**
-- ✅ 我可以提供英文和中文内容
-- ⚠️ 法文和西班牙文需要翻译（可以先做框架，后续补充）
+- ✅ 第一批：英文和中文内容已提供，法文和西班牙文已翻译
+- ⚠️ 后续批次：需要专业翻译或社区贡献
 
 ---
 
